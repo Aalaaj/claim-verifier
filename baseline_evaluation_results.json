@@ -1,0 +1,67 @@
+{
+  "detection": {
+    "precision": 1.0,
+    "recall": 0.24,
+    "f1": 0.3870967741935484,
+    "accuracy": 0.36666666666666664,
+    "tp": "6",
+    "fp": "0",
+    "fn": "19",
+    "tn": "5"
+  },
+  "typing": {
+    "accuracy": 0.2,
+    "classification_report": {
+      "General Finding": {
+        "precision": 0.14285714285714285,
+        "recall": 0.75,
+        "f1-score": 0.24,
+        "support": 4.0
+      },
+      "Methodology Claim": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 6.0
+      },
+      "Novelty Claim": {
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.5,
+        "support": 3.0
+      },
+      "Performance Comparison": {
+        "precision": 1.0,
+        "recall": 0.16666666666666666,
+        "f1-score": 0.2857142857142857,
+        "support": 6.0
+      },
+      "Research Gap": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 4.0
+      },
+      "Statistical Claim": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 2.0
+      },
+      "accuracy": 0.2,
+      "macro avg": {
+        "precision": 0.35714285714285715,
+        "recall": 0.20833333333333334,
+        "f1-score": 0.17095238095238097,
+        "support": 25.0
+      },
+      "weighted avg": {
+        "precision": 0.38285714285714284,
+        "recall": 0.2,
+        "f1-score": 0.16697142857142858,
+        "support": 25.0
+      }
+    }
+  },
+  "timestamp": "2026-06-07T11:54:42.716413"
+}

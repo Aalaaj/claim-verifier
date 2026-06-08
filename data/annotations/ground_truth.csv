@@ -1,0 +1,31 @@
+text,is_claim,claim_type,paper_name,confidence
+"Our proposed system achieved 95% accuracy in detecting early-stage tumors",1,Performance Comparison,testThesis,3
+"We observed a 34% reduction in diagnosis time",1,Performance Comparison,testThesis,3
+"This paper is organized as follows",0,,testThesis,3
+"The correlation between our model's predictions and biopsy results was 0.92",1,Statistical Claim,testThesis,3
+"To the best of our knowledge, this is the first study to tackle cross-topic claim detection",1,Novelty Claim,Check-worthy claim detection across topics 003,3
+"We propose AraCWA, an improved model that incorporates few-shot learning",1,Methodology Claim,Check-worthy claim detection across topics 003,3
+"However, existing models suffer from limitations in generalizability",1,Research Gap,Check-worthy claim detection across topics 003,3
+"The p-value was less than 0.001",1,Statistical Claim,testThesis,3
+"We implemented our model using PyTorch and trained it on NVIDIA A100 GPUs",1,Methodology Claim,testThesis,2
+"The model was trained using Adam optimizer with a learning rate of 1e-5",1,Methodology Claim,testThesis,2
+"The results are presented in Table 2",1,General Finding,testThesis,1
+"Figure 3 illustrates the relationship between variables",1,General Finding,testThesis,1
+"This research was supported by NSF grant IIS-1234567",0,,testThesis,3
+"The authors thank the anonymous reviewers for their helpful comments",0,,testThesis,3
+"Copyright 2024 by the authors",0,,testThesis,3
+"All code and data are available on GitHub",0,,testThesis,3
+"Valsci unites retrieval-augmented generation with structured bibliometric scoring",1,Methodology Claim,Valsci an open-source self-hostable,2
+"Valsci significantly outperforms base GPT-4o outputs in citation hallucination rate",1,Performance Comparison,Valsci an open-source self-hostable,3
+"The system can process hundreds of claims per hour",1,Performance Comparison,Valsci an open-source self-hostable,2
+"LLMs often struggle with hallucinations when deployed as stand-alone tools",1,Research Gap,Valsci an open-source self-hostable,3
+"CliVER achieved a notable F1 score of 0.92",1,Performance Comparison,Retrieval augmented scientific claim verification,3
+"The ensemble model outperforms each individual model by 3% to 11%",1,Performance Comparison,Retrieval augmented scientific claim verification,3
+"Future studies are warranted to further test its clinical utility",1,Research Gap,Retrieval augmented scientific claim verification,2
+"PCD is a more systematic and transparent version of claim detection",1,Methodology Claim,Propositional claim detection a task and dataset 005,2
+"Models trained on this dataset can be used for various purposes",1,General Finding,Propositional claim detection a task and dataset 005,2
+"Both questions have a positive answer",1,General Finding,Propositional claim detection a task and dataset 005,1
+"We make the following novel contributions",1,Novelty Claim,Check-worthy claim detection across topics 003,3
+"Existing claim detection models have been developed for and tested on datasets",1,Research Gap,Check-worthy claim detection across topics 003,2
+"Our work is the first to tackle the check-worthy claim detection task across topics",1,Novelty Claim,Check-worthy claim detection across topics 003,3
+"CLAIM VERIFICATION PIPELINE: Document Retrieval → Sentence Selection → Label Prediction",1,Methodology Claim,Retrieval augmented scientific claim verification,2

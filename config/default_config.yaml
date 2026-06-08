@@ -1,0 +1,43 @@
+# System configuration
+system:
+  min_claim_length: 40 # Minimum sentence length
+  max_claims_per_paper: 500 # Max claims to extract
+  verify_only_important: true
+  min_importance_for_verification: "Medium"
+  check_relevance: true
+  
+# Model configuration
+model:
+  claim_detector:
+    name: "allenai/scibert_scivocab_uncased"
+    num_labels: 6
+    max_length: 512
+    batch_size: 8
+    learning_rate: 2e-5
+    epochs: 3
+    
+  verifier:
+    name: "cross-encoder/stsb-roberta-base"
+    api_timeout: 10
+    max_papers: 10
+    
+# Trust metrics weights
+trust_weights:
+  internal_consistency: 0.15   # Weight for S_int formula
+  external_verification: 0.35  # Weight for S_ext formula
+  citation_quality: 0.20 # Weight for S_cit formula
+  methodological_soundness: 0.20 # Weight for S_meth formula
+  reproducibility: 0.10 # Weight for S_rep formula
+  
+# Formula parameters
+formulas:
+  internal_consistency_theta: 5.0
+  external_verification_lambda: 1.0
+  external_verification_gamma: 0.5
+  citation_quality_threshold: 5
+  
+# Export settings
+export:
+  excel_format: true
+  include_summary: true
+  include_filtered_sheets: true

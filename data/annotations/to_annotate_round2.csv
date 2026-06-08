@@ -1,0 +1,2409 @@
+text,page,paper_name,is_claim,claim_type
+"ca
+Abstract
+Automated Fact-Checking (AFC) is the auto-
+mated verification of claim accuracy",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"AFC is
+crucial in discerning truth from misinformation,
+especially given the huge amounts of content
+are generated online daily",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Current research
+focuses on predicting claim veracity through
+metadata analysis and language scrutiny, with
+an emphasis on justifying verdicts",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"This pa-
+per surveys recent methodologies, proposing
+a comprehensive taxonomy and presenting the
+evolution of research in that landscape",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"A com-
+parative analysis of methodologies and future
+directions for improving fact-checking explain-
+ability are also discussed",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"1
+Introduction
+The huge increase in both user-generated and au-
+tomated content has led to a significant amount of
+misinformation",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"This poses risks to uninformed
+readers, highlighting the need for scalable, auto-
+mated methods for verification and fact-checking
+(Nakov et al",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"While predicting the verac-
+ity of claims is essential, relying solely on pre-
+dictions without providing explanations can be
+counterproductive, potentially reinforcing belief
+in false claims and perpetuating misinformation
+(Lewandowsky et al",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Most fact-checking models use neural architec-
+tures, but interpreting these models is challenging",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"There is a need for fact-checking frameworks pro-
+viding justifications to enhance effectiveness and
+trustworthiness",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"This survey presents recent ef-
+forts addressing automatic justification production
+for claim verification, emphasizing the move to-
+wards “Explainable” Automated Fact-Checking
+(AFC)",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Some work refers to the justification pro-
+duction process as the explanation generation pro-
+cess (Kotonya and Toni, 2020a)",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"In this survey, the
+term “justification production” is used following
+the work of Guo et al",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"This survey’s main contribution is as follows:
+Firstly, it introduces a multidimensional taxonomy
+for categorizing works based on various criteria",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Secondly, it provides how research is progressing
+towards standard justifications",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Thirdly, it conducts
+a comparative analysis of justification production
+approaches, pipeline architectures, input and out-
+put types",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Lastly, it identifies challenges while
+proposing future directions in justification produc-
+tion",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Appendix A outlines the methodology utilized
+for literature compilation, detailing the search strat-
+egy and selection criteria employed for the papers
+that form the cornerstone of this survey",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"2
+Related Surveys
+Thorne and Vlachos (2018) provided a comprehen-
+sive review of early developments in fact-checking,
+but they don’t focus on verdicts with justifications",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"(2022); Vladika and Matthes (2023) offer
+broad overviews of the entire fact-checking pro-
+cess and its various components",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"In contrast, our
+work specifically concentrates on the aspect of justi-
+fication production",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Moreover, recent multi-modal
+fact-checking surveys (Alam et al",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+", 2022; Vladika
+and Matthes, 2023) mention that natural language
+justification production remains unexplored in the
+multi-modal AFC domain",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"In this survey, we high-
+light some of the emergent works in multi-modal
+justification production",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"The survey by Kotonya and Toni (2020a), focus-
+ing on justification production, is closely related
+to ours",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"However, since then, there has been a sig-
+nificant progress driven by the rapid development
+of transformer-based architectures and Large Lan-
+guage Models (LLMs)",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"(2023) only
+augmented the latter work’s taxonomy with coun-
+terfactual justifications",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"While partially covering
+some recent work, they do not provide a compre-
+hensive, new, detailed multi-dimensional taxonomy
+as proposed in this survey",1,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"3
+Justification Production within AFC
+AFC consists of multiple stages forming a pipeline,
+as shown in Figure 1",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"One of these stages is justi-
+fication production",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"In the upcoming subsections,
+a brief overview of the general stages in the AFC
+pipeline is provided, with a specific focus on the
+justification production stage",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"1
+Check-worthy Claims Detection Stage
+This initial stage classifies the claims as check-
+worthy or not",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"If they are check-worthy, then
+they are selected from the corpus containing them",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Deeming if a claim is check-worthy or not is based
+on the importance of the topic of the claim, if it is
+verifiable, and if the claim poses potential harm in
+case it is misleading (Guo et al",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"2
+Retrieval and Selection of Most Relevant
+Evidence
+This stage retrieves data related to the claim from
+trustworthy sources and selects the most relevant
+information to make a decision, which is termed
+the ‘evidence",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"’ In the subsequent stage, this evi-
+dence is used to predict the veracity of the claim",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"The determination of veracity depends on the
+degree of alignment between the claim and the
+evidence",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"For example, the veracity of the claim
+‘The director of the film ‘Legend’ is English’ could
+depend on the following evidence snippets gath-
+ered from multiple trustworthy websites: ‘Brian
+Helgeland is the director of the film ‘Legend”, and
+‘Brian Helgeland only holds a U",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"3
+Veracity Prediction of the Claim
+This stage classifies claims according to a binary
+scheme, true or false, or through fine-grained multi-
+class classification including also other verdicts
+such as “partially correct”, or “correct but mislead-
+ing without extra context”",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Following the example
+in the previous section, the claim ‘The director of
+the film ‘Legend’ is English’ should be determined
+as ‘False’ as it is not aligned with the evidence",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"4
+Justification Production
+This stage produces justifications to explain the ver-
+dict of an AFC model regarding a claim’s veracity",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"The process is known as justification production
+(Guo et al",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"In the context of the previously discussed claim,
+‘The director of the film ‘Legend’ is English,’ an
+example of a justification for the ‘False’ verdict,
+grounded in the evidence, could be ‘Brian Helge-
+land, the director of the film ‘Legend,’ is American
+and not English",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"’ Hence, the inputs for a justifica-
+tion production component are the claim and the
+selected evidence",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"The veracity verdict may also be
+an input, depending on the pipeline architectures
+of the AFC systems that are explained in Section
+6",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"3 and are shown in our proposed classification of
+pipelines (see Figure 2)",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"We propose categorizing the work in justifica-
+tion production not only based on these pipeline
+architectures but also on additional dimensions (see
+Figure 3)",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"A key dimension is the explainability
+of the justification production process",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"The steps of
+the process leading to the prediction of the claim’s
+veracity and its justification can be self-explainable
+or not",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"In addition, the input type is an important di-
+mension",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"It can be either multi-modal or text-
+only",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Another dimension is the nature of the jus-
+tification output",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"It may be natural language
+text, or just highlighted parts of the input, like
+bold/highlighted words in the claim and evidence,
+or specific factual triples in the form Subject, Pred-
+icate, Object (SPO) (see Figure 4 for illustrative
+examples)",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"The relevant evidence rationals are selected nodes
+in the graph, and the edges represent the relations
+between these selected nodes",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"; and LLMs Retrieval Augmented Generation
+(RAG) or Fine-tuning based approaches where
+LLMs are used via prompting to verify the align-
+ment between the claim and the evidence rationals
+producing the veracity verdict and the justification
+for the verdict",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"5 describes the approaches mentioned
+6680",2,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"✅
+✅
+✅
+✘
+✘
+✘
+Check-worthy 
+Claims 
+Detection
+Section 3",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"3
+Retrieval and 
+Selection of Most 
+Relevant Evidence
+Section 3",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"4
+A Corpus 
+Containing Claims
+selected
+selected
+ unverified 
+claims
+True 
+Claim
+False 
+Claim
+Figure 1: General AFC Pipeline; courtesy of (Guo et al",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"The quality of the justifica-
+tions produced by these approaches is evaluated
+based on the presence of certain desired properties,
+which will be discussed in Section 4",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"4
+Progression towards Justifications
+Standardization
+The aim of justification production is to create a
+justification that aligns with specific, agreed-upon
+criteria (Sokol and Flach, 2019), which we refer to
+as a standard justification",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Achieving high-quality
+justifications involves considering certain desired
+properties known as ‘desiderata’ (Kulesza et al",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Researchers have collectively agreed upon
+these desired properties (Sokol and Flach, 2019)",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Producing justifications aligned with these desired
+properties is crucial for standardizing justifications
+in explainable AFC",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"These properties were defined with
+further details by Kotonya and Toni (2020a), who
+also added the desideratum of unbiased or impar-
+tial justifications",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"In the context of fact-checking,
+bias usually manifests as opinions masquerading
+as evidence",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"To main-
+tain local coherence, there should be no contradic-
+tion between any two sentences in the justification",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"(2022) started the first attempt to
+generate standard justifications by adding some de-
+sired properties (i",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"faithfulness/coherence, and
+data consistency) as additional learning signals
+in the loss function of a transformer-based model
+(Vaswani et al",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"The data consistency evalu-
+ates the similarity of justifications for similar input
+instances",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"5
+Datasets in AFC
+It’s worth noting that this survey focuses on pro-
+viding a new taxonomy, a comparative analysis
+of justification production approaches, investigat-
+ing pipeline architectures, addressing challenges
+encountered, and proposing future directions in
+AFC justification production",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Comprehensive ex-
+aminations of datasets were covered thoroughly in
+previous surveys (mentioned in Section 2)",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"How-
+ever, some information about datasets in AFC is
+also provided in this section",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"The dataset might contain the needed content for
+all the stages of the fact-checking pipeline: claim
+detection, evidence retrieval and selection, verac-
+ity verdict production, and justification production",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"The following paragraphs will discuss the type
+of content representing each stage with example
+datasets provided in Table 1",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Textual claims are the most common input for
+fact-checking because they are often produced after
+the claim detection stage",3,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Dataset Name
+Claims
+Number
+Veracity
+Verdict
+Justified
+Notes and
+Remarks
+LIAR
+(Wang, 2017)
+12836
+Yes
+Political dataset
+StatsProperties
+(Vlachos and Riedel, 2015)
+7092
+No
+A knowledge
+graph dataset
+SCIFACT
+(Wadden et al",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+", 2020)
+1409
+Yes
+Dataset in the
+scientific domain
+MultiFC
+(Augenstein et al",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+", 2019)
+36534
+No
+A multi-domain
+dataset that
+also has metadata
+PUBHEALTH
+(Kotonya and Toni, 2020b)
+11832
+Yes
+Dataset in the
+health domain
+X-Fact
+(Gupta and Srikumar, 2021)
+31189
+No
+Multi-lingual dataset
+FEVER
+(Thorne et al",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+", 2018)
+185445
+No
+Artificially generated
+dataset
+HOVER
+(Jiang et al",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+", 2020)
+26171
+No
+Artificially generated
+dataset
+FEVEROUS
+(Aly et al",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+", 2021)
+87026
+No
+Artificially generated
+dataset and its
+evidence contains
+both text and tables
+KLinker
+(Ciampaglia et al",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+", 2015)
+10000
+No
+A knowledge
+graph dataset
+WikiFactCheck
+(Sathe et al",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+", 2020)
+124821
+No
+Artificially generated
+dataset
+VitaminC
+(Schuster et al",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+", 2021)
+488904
+No
+Artificially generated
+dataset
+Table 1: Examples of Datasets for AFC
+sentence-level statements",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Many researchers have
+created datasets by collecting real-world claims
+from specialized websites like Politifact because
+they are easily accessible",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Some researchers con-
+centrate on obtaining claims from specialized ar-
+eas like climate change, science, and public health",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Other sentence-level inputs, such as answers to
+questions in forums, have also been investigated",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Some datasets are English, and some are multi-
+lingual",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Metadata, including information such
+as publication date, sources, and user profiles,
+is a common type of evidence considered",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Al-
+though metadata can provide complementary in-
+sights when textual sources or structural knowl-
+edge are lacking, it does not directly substantiate
+the claim",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Text-based sources, such as news articles, aca-
+demic publications, and Wikipedia entries, are fre-
+quently employed as evidence for fact-checking",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Multi-modal claims and evidence have recently
+been researched, and images and videos are consid-
+ered more credible than text by most audiences",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Not all the datasets have a binary veracity ver-
+dict scheme",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Fact-checkers often utilize multi-class
+labels to classify different levels of truthfulness, in-
+cluding categories such as ‘true,’ ‘mostly true,’ and
+‘mixed",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"’
+From the perspective of justification production,
+AFC datasets can be classified into two categories:
+those without justifications and those with justi-
+fications",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Complementing datasets lacking justifi-
+cations is important",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Table 1 includes
+datasets from both categories, with some being
+synthetically generated and others extracted from
+external sources like Wikipedia",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"6
+Justification Production Taxonomy
+Multiple dimensions or criteria for categorizing Ex-
+plainable Automated Fact-Checking systems are
+outlined in this section",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"We propose five dimen-
+sions (illustrated by the first five levels/columns
+of the Taxonomy tree in Figure 3)",4,Automated Justification Production for Claim Veracity in Fact Checking A Survey on Architectures and Approaches 007,,
+"Check-worthy claim detection across topics
+for automated fact-checking
+Amani S",1,Check-worthy claim detection across topics 003,,
+"Despite a body of research tackling the task, previous
+research has overlooked the challenging nature of identifying check-worthy claims
+across different topics",1,Check-worthy claim detection across topics 003,,
+"In this article, we assess and quantify the challenge of
+detecting check-worthy claims for new, unseen topics",1,Check-worthy claim detection across topics 003,,
+"After highlighting the
+problem, we propose the AraCWA model to mitigate the performance deterioration
+when detecting check-worthy claims across topics",1,Check-worthy claim detection across topics 003,,
+"The AraCWA model enables
+boosting the performance for new topics by incorporating two components for few-
+shot learning and data augmentation",1,Check-worthy claim detection across topics 003,,
+"Using a publicly available dataset of Arabic
+tweets consisting of 14 different topics, we demonstrate that our proposed data
+augmentation strategy achieves substantial improvements across topics overall,
+where the extent of the improvement varies across topics",1,Check-worthy claim detection across topics 003,,
+"Further, we analyse the
+semantic similarities between topics, suggesting that the similarity metric could be
+used as a proxy to determine the difﬁculty level of an unseen topic prior to
+undertaking the task of labelling the underlying sentences",1,Check-worthy claim detection across topics 003,,
+"To alleviate
+this challenge, support from automated fact-checking systems is becoming increasingly
+necessary to help getting rid of misinformation (Zeng, Abumansour & Zubiaga, 2021)",1,Check-worthy claim detection across topics 003,,
+"One
+of the key components of an automated fact-checking pipeline is the check-worthy claim
+detection system, which given a collection of sentences as input, ranks them based on their
+need to be fact-checked (Shaar et al",1,Check-worthy claim detection across topics 003,,
+"The ranked output can be used in different
+ways, among others by providing fact-checkers with the most important claims to work on,
+by feeding a claim veriﬁcation system with the top claims to be checked, or by informing
+the general public that the top claims may be disputed and need veriﬁcation",1,Check-worthy claim detection across topics 003,,
+"In recent years, there has been a body of research developing models for check-worthy
+claim detection (Konstantinovskiy et al",1,Check-worthy claim detection across topics 003,,
+"Many of these systems have been tested
+against each other by competing on benchmark datasets released as part of the CheckThat",1,Check-worthy claim detection across topics 003,,
+"The recent tendency of these models has been to use
+How to cite this article Abumansour AS, Zubiaga A",1,Check-worthy claim detection across topics 003,,
+Check-worthy claim detection across topics for automated fact-checking,1,Check-worthy claim detection across topics 003,,
+"1365
+Submitted 28 December 2022
+Accepted 4 April 2023
+Published 16 May 2023
+Corresponding author
+Amani S",1,Check-worthy claim detection across topics 003,,
+"uk
+Academic editor
+Anwitaman Datta
+Additional Information and
+Declarations can be found on
+page 16
+DOI 10",1,Check-worthy claim detection across topics 003,,
+"1365
+Copyright
+2023 Abumansour and Zubiaga
+Distributed under
+Creative Commons CC-BY 4",1,Check-worthy claim detection across topics 003,,
+"Transformer models such as BERT and RoBERTa which have led to improved
+performance for detecting check-worthy claims in different languages including English
+and Arabic (Nakov et al",2,Check-worthy claim detection across topics 003,,
+"Existing claim detection models have been developed for
+and tested on datasets that provide a mix of topics in both training and test data, in such a
+way that topics encountered in the test set were already seen during training",2,Check-worthy claim detection across topics 003,,
+"The objective of our work is to assess the extent of the problem of detecting check-
+worthy claims across topics, i",2,Check-worthy claim detection across topics 003,,
+", simulating the scenario where new topics emerge and for
+which labelled data is lacking or limited",2,Check-worthy claim detection across topics 003,,
+"To undertake this challenge, we use an Arabic
+language dataset from the CheckThat",2,Check-worthy claim detection across topics 003,,
+"shared tasks which comprises a collection of check-
+worthy and not check-worthy claims distributed across 14 different topics",2,Check-worthy claim detection across topics 003,,
+"We ﬁrst
+conduct experiments in zero-shot settings using a model called AraCW, which has not
+seen any data associated with the target topic; the low performance of this model for some
+of the topics demonstrates the importance of this hitherto unstudied problem in check-
+worthy claim detection",2,Check-worthy claim detection across topics 003,,
+"We further propose AraCWA, an improved model that
+incorporates two additional components to enable few-shot learning and data
+augmentation",2,Check-worthy claim detection across topics 003,,
+"We test AraCWA with a range of few-shot and data augmentation settings
+to evaluate its effectiveness, achieving improvements of up to 11% over AraCW",2,Check-worthy claim detection across topics 003,,
+"To the best of our knowledge, our work is the ﬁrst to tackle the check-worthy claim
+detection task across topics",2,Check-worthy claim detection across topics 003,,
+"In doing so, we make the following novel contributions:
+ We establish a methodology for cross-topic claim detection in both zero-shot and few-
+shot settings",2,Check-worthy claim detection across topics 003,,
+" We assess the extent of the challenge of detecting claims for new, unseen topics through
+zero-shot experiments",2,Check-worthy claim detection across topics 003,,
+" We propose an improved approach, AraCWA, which leverages few-shot learning in
+combination with data augmentation strategies to boost the performance on new topics",2,Check-worthy claim detection across topics 003,,
+" We perform a set of ablative experiments to assess the contribution of the data
+augmentation technique as well as the few-shot strategy",2,Check-worthy claim detection across topics 003,,
+" We perform an analysis of the characteristics of the topics under study, ﬁnding that the
+semantic similarity between topics can be a reasonable proxy to determine the difﬁculty
+level of a topic",2,Check-worthy claim detection across topics 003,,
+"In presenting the ﬁrst study in cross-topic claim detection, our work also posits the need
+for more research in this challenging yet realistic scenario",2,Check-worthy claim detection across topics 003,,
+"RELATED WORK ON CHECK-WORTHY CLAIM DETECTION
+While a large portion of the research in automated fact-checking has focused on claim
+veriﬁcation (Pradeep et al",2,Check-worthy claim detection across topics 003,,
+", 2021; Schuster, Fisch & Barzilay, 2021; Zeng & Zubiaga, 2022),
+Abumansour and Zubiaga (2023), PeerJ Comput",2,Check-worthy claim detection across topics 003,,
+work on check-worthy claim detection has been more limited,3,Check-worthy claim detection across topics 003,,
+"However, the claim
+detection task constitutes an important ﬁrst step that identiﬁes the claims to be prioritised
+and to be fed to the subsequent veriﬁcation component (Hassan et al",3,Check-worthy claim detection across topics 003,,
+"For
+instance, fact-checkers are interested in prioritising claims that may have an impact in
+society and hence are worthy of being checked",3,Check-worthy claim detection across topics 003,,
+"Table 1 shows examples of two check-
+worthy and not check-worthy claim for the same topic",3,Check-worthy claim detection across topics 003,,
+"In what follows, we discuss existing
+work in check-worthy claim detection with a particular focus on the Arabic language and
+data augmentation",3,Check-worthy claim detection across topics 003,,
+"Existing research in check-worthy claim detection has primarily focused on sentences in
+the English language (Zeng, Abumansour & Zubiaga, 2021)",3,Check-worthy claim detection across topics 003,,
+"This is the case, for example,
+of one of the ﬁrst fact-checking systems developed in the ﬁeld, ClaimBuster (Hassan et al",3,Check-worthy claim detection across topics 003,,
+",
+2017a, 2017b), which studied detection of claims from transcripts of US presidential
+election debates through what they called “claim spotter”",3,Check-worthy claim detection across topics 003,,
+"(2019) investigated the use of context and discourse features to improve the claim
+detection component; while this is a clever approach, it does not generalise to other types
+of datasets such as tweets in our case, given the limited context available typically in social
+media",3,Check-worthy claim detection across topics 003,,
+"(2021) developed a model, namely CNC, that
+leverages InferSent embeddings (Conneau et al",3,Check-worthy claim detection across topics 003,,
+", 2017) along with part-of-speech tags and
+named entities to identify claims",3,Check-worthy claim detection across topics 003,,
+"In addition to the above studies, there have been numerous competitive efforts to
+develop claim detection systems thanks to the CheckThat",3,Check-worthy claim detection across topics 003,,
+"These shared tasks have provided a benchmark for
+researchers to study the task in a competitive manner, including publicly available datasets
+in multiple languages",3,Check-worthy claim detection across topics 003,,
+"In our study, we use the datasets available from these shared tasks in
+the Arabic language",3,Check-worthy claim detection across topics 003,,
+"Check-worthy claim detection in the Arabic language
+Check-worthy claim detection for the Arabic language was ﬁrst tackled by ClaimRank
+(Jaradat et al",3,Check-worthy claim detection across topics 003,,
+", 2018) when training the neural network model with originally English
+sentences from political debates translated into Arabic",3,Check-worthy claim detection across topics 003,,
+", Gradient boosting and k-nearest neighbors, were inspected for the task in Arabic of
+check-worthiness at CheckThat",4,Check-worthy claim detection across topics 003,,
+"The paradigm shift in the ﬁeld of NLP occurred with the emergence of Transformers
+(Wolf et al",4,Check-worthy claim detection across topics 003,,
+", 2020), and bidirectional encoder representations (BERT), which became the
+state-of-art model for several tasks, including a range of text classiﬁcation tasks (Devlin
+et al",4,Check-worthy claim detection across topics 003,,
+"This is also reﬂected in the works on check-worthy claim detection as most
+participants of the recent CheckThat Labs ﬁne-tuned BERT models for Arabic such as
+mBERT, AraBERT, and BERT-Base-Arabic (Hasanain et al",4,Check-worthy claim detection across topics 003,,
+"However, existing models focus on evaluating their performance on test sets whose
+topics overlap with those seen in the training data, without focusing on the challenges that
+different topics may pose to the task",4,Check-worthy claim detection across topics 003,,
+"As part of this study, we focus on the novel challenge
+of investigating how claim detection models perform differently for different topics",4,Check-worthy claim detection across topics 003,,
+"Data augmentation for claim detection
+Data augmentation techniques enable to leverage the (generally limited) existing data to
+generate new synthetic data through alterations",4,Check-worthy claim detection across topics 003,,
+"By carefully altering the original data
+samples, one can augment the available training data with the newly generated samples;
+however, data augmentation techniques may also produce noisy samples which lead to
+performance deterioration, and therefore creation of useful samples is crucial",4,Check-worthy claim detection across topics 003,,
+"Data
+augmentation strategies have also been successfully used to alleviate different problems,
+e",4,Check-worthy claim detection across topics 003,,
+", to settle an imbalanced dataset and to reduce model biases (Feng et al",4,Check-worthy claim detection across topics 003,,
+Data augmentation techniques have been barely used in claim detection,4,Check-worthy claim detection across topics 003,,
+"For example,
+Williams, Rodrigues & Tran (2021) used a contextual word embedding augmentation
+strategy in their participation in the 2021 CheckThat",4,Check-worthy claim detection across topics 003,,
+"These data augmentation
+techniques have however not been studied in the context of cross-topic claim detection",4,Check-worthy claim detection across topics 003,,
+"In
+our study, we propose the AraCWA model which provides the ﬂexibility of being used
+with different data augmentation strategies",4,Check-worthy claim detection across topics 003,,
+"More speciﬁcally, we test three data
+augmentation strategies to evaluate their effectiveness in the cross-topic claim detection
+task, namely back-translation, contextual word embedding augmentation and text-
+generating augmentation",4,Check-worthy claim detection across topics 003,,
+"Rumour detection
+Related areas of research have focused on rumour detection (Derczynski et al",4,Check-worthy claim detection across topics 003,,
+", 2021), which have aspects in common with claim
+detection as they also consist in ﬁnding sentences that need linking to evidence",4,Check-worthy claim detection across topics 003,,
+"Rumour
+detection is generally performed over breaking news events, which are of different nature
+compared to the claim detection task which typically focuses on other kinds of claims
+Abumansour and Zubiaga (2023), PeerJ Comput",4,Check-worthy claim detection across topics 003,,
+"Despite the commonalities between the two tasks, we are not
+aware of work detecting rumours across topics, not least in the Arabic language",5,Check-worthy claim detection across topics 003,,
+"METHODOLOGY
+Problem formulation and evaluation
+The check-worthy claim detection task consists in determining which of the sentences, out
+of a collection, constitute claims that should be fact-checked",5,Check-worthy claim detection across topics 003,,
+"Given a collection of
+sentences S ¼ fs1; s2; …; sng, the model needs to classify each of them into one of
+L ¼ fCW; NCWg, where CW = check-worthy and NCW = not check-worthy",5,Check-worthy claim detection across topics 003,,
+"The
+collection of sentences in S belongs to a number of topics T ¼ ft1; t2; …; tmg, where each
+sentence sj only belongs to one topic ti",5,Check-worthy claim detection across topics 003,,
+"While the claim detection task has sometimes been formulated as a classiﬁcation
+problem, here and in line with the CheckThat",5,Check-worthy claim detection across topics 003,,
+"shared tasks, we formulate it as a ranking
+task",5,Check-worthy claim detection across topics 003,,
+"As a ranking problem, the model needs to produce an ordered list of sentences in S,
+where the sentences in the top of the list are predicted as the most likely to be check-worthy
+claims",5,Check-worthy claim detection across topics 003,,
+"The task is in turn evaluated through the mean average precision (MAP) metric,
+which is deﬁned as follows:
+MAP ¼ 1
+k
+X
+k
+i¼1
+APi
+(1)
+That is the average of the AP’s (average precisions) across classes, where in the case of
+claim detection k ¼ 2",5,Check-worthy claim detection across topics 003,,
+"AP is in turn deﬁned as follows:
+APc ¼ 1
+N
+X
+j ¼ 1NPi
+(2)
+where N is the number of instances being considered in the evaluation, whose precision
+values are averaged",5,Check-worthy claim detection across topics 003,,
+"Ultimately, APc measures the average precision on the top N items for class c",5,Check-worthy claim detection across topics 003,,
+"After
+calculating the AP values for both classes, they are averaged to calculate the ﬁnal MAP",5,Check-worthy claim detection across topics 003,,
+"Dataset
+We make combined use of two claim detection datasets in the Arabic language, CT20-AR
+and CT21-AR, released as part of two different editions of the CheckThat",5,Check-worthy claim detection across topics 003,,
+"The
+datasets contain tweets which are labelled as check-worthy or not check-worthy",5,Check-worthy claim detection across topics 003,,
+"The
+tweets are also categorised into topics, which allows us to set up the cross-topic
+experiments",5,Check-worthy claim detection across topics 003,,
+We show the main statistics of these two datasets in Table 2,5,Check-worthy claim detection across topics 003,,
+"Abumansour and Zubiaga (2023), PeerJ Comput",5,Check-worthy claim detection across topics 003,,
+"The CT20-AR dataset
+This was released as part of the CheckThat",6,Check-worthy claim detection across topics 003,,
+"5 k tweets distributed across 15 topics, with the tweets evenly distributed
+across the topics, i",6,Check-worthy claim detection across topics 003,,
+"The CT21-AR dataset
+Released as part of the CheckThat",6,Check-worthy claim detection across topics 003,,
+", 2021), part of this dataset
+overlaps with CT20-AR",6,Check-worthy claim detection across topics 003,,
+"After removing the overlapping tweets, this dataset provides two
+new topics with a total of 600 tweets (347 and 253 tweets for each topic)",6,Check-worthy claim detection across topics 003,,
+The combination of both datasets originally led to 17 topics (15 + 2),6,Check-worthy claim detection across topics 003,,
+"The ﬁnal, combined dataset contains 8,100 tweets distributed across 14 topics",6,Check-worthy claim detection across topics 003,,
+"See Table 6
+in Appendix A for a list and description of these topics",6,Check-worthy claim detection across topics 003,,
+The CT20-AR and CT21-AR datasets differ slightly in the labels,6,Check-worthy claim detection across topics 003,,
+"Where the former only
+provides binary labels for check-worthy (CW) and not check-worthy (NCW), the latter
+provides two levels of labels: (i) claim (C) or not claim (NC), and (ii) check-worthy (CW)
+and not check-worthy (NCW)",6,Check-worthy claim detection across topics 003,,
+"In both cases, we only rely on the CW/NCW labels for
+consistency",6,Check-worthy claim detection across topics 003,,
+"While inspecting the datasets, we found the average length of tweets in CT20-AR and
+CT21-AR datasets together is 178 charactersr",6,Check-worthy claim detection across topics 003,,
+"The distribution of labels in the entire
+dataset is clearly skewed towards the NCW class amounting to 71",6,Check-worthy claim detection across topics 003,,
+"6% of the tweets,
+whereas the CW class only represents 28",6,Check-worthy claim detection across topics 003,,
+"Further drilling down into the distribution of CW and NCW across the different topics,
+Fig",6,Check-worthy claim detection across topics 003,,
+"Claim Verification in the Age of Large Language Models: A Survey
+Alphaeus Dmonte1, Roland Oruche2, Marcos Zampieri1, Prasad Calyam2, Isabelle Augenstein3
+1George Mason University, USA
+2University of Missouri-Columbia, USA
+3University of Copenhagen, Denmark
+admonte@gmu",1,Claim Verification in the Age of Large Language Models A Survey,,
+"edu
+Abstract
+The large and ever-increasing amount of data available on
+the Internet coupled with the laborious task of manual claim
+and fact verification has sparked the interest in the develop-
+ment of automated claim verification systems",1,Claim Verification in the Age of Large Language Models A Survey,,
+"1 Several deep
+learning and transformer-based models have been proposed
+for this task over the years",1,Claim Verification in the Age of Large Language Models A Survey,,
+"With the introduction of Large
+Language Models (LLMs) and their superior performance in
+several NLP tasks, we have seen a surge of LLM-based ap-
+proaches to claim verification along with the use of novel
+methods such as Retrieval Augmented Generation (RAG)",1,Claim Verification in the Age of Large Language Models A Survey,,
+"In
+this survey, we present a comprehensive account of recent
+claim verification frameworks using LLMs",1,Claim Verification in the Age of Large Language Models A Survey,,
+"We describe the
+different components of the claim verification pipeline used
+in these frameworks in detail including common approaches
+to retrieval, prompting, and fine-tuning",1,Claim Verification in the Age of Large Language Models A Survey,,
+"Finally, we describe
+publicly available English datasets created for this task",1,Claim Verification in the Age of Large Language Models A Survey,,
+"Introduction
+False information is widely present on social media and on
+the Web motivating the development of automated fact ver-
+ification systems (Guo, Schlichtkrull, and Vlachos 2022)",1,Claim Verification in the Age of Large Language Models A Survey,,
+"The introduction of LLMs has provided malicious actors
+with sophisticated ways of creating and disseminating false
+information",1,Claim Verification in the Age of Large Language Models A Survey,,
+"Recent election cycles saw a large number of
+claims spread across both social media and news platforms
+alike (Dmonte et al",1,Claim Verification in the Age of Large Language Models A Survey,,
+"Similarly, during the COVID-
+19 pandemic, many claims were spread across social media
+platforms",1,Claim Verification in the Age of Large Language Models A Survey,,
+"Many of these claims were factually inaccurate
+which led to the spread of misinformation (Zhou et al",1,Claim Verification in the Age of Large Language Models A Survey,,
+"Fact-checking potentially false claims is an essential mod-
+eration task to reduce the spread of misinformation",1,Claim Verification in the Age of Large Language Models A Survey,,
+"Several
+organizations such as FactCheck, PolitiFact, NewsGuard,
+and Full Fact perform manual fact-checking to verify claims
+in different domains",1,Claim Verification in the Age of Large Language Models A Survey,,
+"However, this has been regarded as a
+laborious task that requires domain expertise (Adair et al",1,Claim Verification in the Age of Large Language Models A Survey,,
+"2017; Hanselowski 2020) and it has become less and less
+feasible due to the sheer volume of misinformation that can
+be generated by humans and AI models",1,Claim Verification in the Age of Large Language Models A Survey,,
+"Automated fact-
+checking has become an increasingly popular approach to
+1We use the terms claim verification and fact verification inter-
+changeably given the overlap between the two concepts",1,Claim Verification in the Age of Large Language Models A Survey,,
+Claim: “Homer Simpson is a cartoon character on Seinfeld,1,Claim Verification in the Age of Large Language Models A Survey,,
+"”
+Claim
+Claim
+Retriever 
+Module
+Retriever 
+Module
+Rationale 
+Selection
+Top K Docs
+…
+Prompt
+Claim Verdict
+“False",1,Claim Verification in the Age of Large Language Models A Survey,,
+"Homer Simpson is a 
+character on The Simpsons",1,Claim Verification in the Age of Large Language Models A Survey,,
+"”
+Label
+Evidence
+LLM
+Top K Docs
+…
+Doc1: <Text> …
+State whether claim is 
+true or false",1,Claim Verification in the Age of Large Language Models A Survey,,
+"C: “Homer Simpson…
+Reason
+Fine-Tune
+False
+a) Traditional NLP
+b) LLM-based
+Database
+ICL
+Figure 1: Comparison of claim verification systems between
+NLP-based (traditional) and LLM-based for claim veracity",1,Claim Verification in the Age of Large Language Models A Survey,,
+verify the veracity of claims in a given text,1,Claim Verification in the Age of Large Language Models A Survey,,
+"2 There are sev-
+eral steps involved in the fact-verification pipelines, but the
+three main components are claim detection, evidence re-
+trieval, and veracity prediction",1,Claim Verification in the Age of Large Language Models A Survey,,
+"Models used in these steps
+have followed the general methodological developments of
+the field and we have thus observed an increase in the use
+of LLMs for claim verification (Zhang and Gao 2023; Wang
+and Shu 2023; Quelle and Bovet 2024)",1,Claim Verification in the Age of Large Language Models A Survey,,
+"Figure 1 shows an
+example claim veracity scenario and compares the architec-
+tural differences between NLP-based (traditional) and LLM-
+based claim verification systems",1,Claim Verification in the Age of Large Language Models A Survey,,
+"Compared to traditional
+systems which use NLP-based models, fact verification are
+less prone to error propagation, and provide explainable/in-
+2We acknowledge that claim verification models can also be
+applied to other modalities of data (e",1,Claim Verification in the Age of Large Language Models A Survey,,
+"In this survey, we
+address models applied to text only",1,Claim Verification in the Age of Large Language Models A Survey,,
+"Claim Detection
+Claim Check-
+worthiness
+Claim Matching
+Evidence Retrieval
+Rationale Selection
+Veracity Prediction
+Explanation
+Generation
+Verified Claims
+External Data/ Resources
++
+Figure 2: The archetypal claim verification pipeline and its main components",2,Claim Verification in the Age of Large Language Models A Survey,,
+terpretable generations/justification when verifying claims,2,Claim Verification in the Age of Large Language Models A Survey,,
+"Despite this, LLMs are pre-trained on very large collec-
+tions of texts and are prone to hallucinations, often gener-
+ating texts containing incorrect information",2,Claim Verification in the Age of Large Language Models A Survey,,
+"Furthermore,
+such models can be used to generate misinformation at scale
+(Chen and Shu 2023; Zhou et al",2,Claim Verification in the Age of Large Language Models A Survey,,
+"2024)
+and therefore they can be exploited by malicious actors to
+generate and spread wrong and factually incorrect informa-
+tion at an unprecedented rate (Pan et al",2,Claim Verification in the Age of Large Language Models A Survey,,
+"Further-
+more, using these pre-trained models for fact-verification
+may generate incorrect veracity labels, as the models may
+also rely on obsolete information to assess the veracity of a
+claim",2,Claim Verification in the Age of Large Language Models A Survey,,
+"2023), which aid
+the models in their decision-making abilities are used in this
+task for the model to get access to the most recent informa-
+tion during the fact-verification task",2,Claim Verification in the Age of Large Language Models A Survey,,
+"2023) and applica-
+tions to specialized domains such as scientific texts (Vladika
+and Matthes 2023)",2,Claim Verification in the Age of Large Language Models A Survey,,
+"However, all past related surveys, lack
+consideration for LLM-based approaches or focus on spe-
+cific sub-tasks of the pipeline (Panchendrarajan and Zubi-
+aga 2024)",2,Claim Verification in the Age of Large Language Models A Survey,,
+"In this paper, we fill this important gap by sur-
+veying LLM-based frameworks proposed in recent years",2,Claim Verification in the Age of Large Language Models A Survey,,
+"To
+the best of our knowledge, this is the first survey to explore
+claim verification with LLMs",2,Claim Verification in the Age of Large Language Models A Survey,,
+"We expect it to be a valuable
+resource to researchers in the field opening exciting new av-
+enues for future research",2,Claim Verification in the Age of Large Language Models A Survey,,
+"Search Criteria
+We search various well-known repositories3 of scientific ar-
+ticles to collect the papers that serve as primary sources
+3ACM: portal",2,Claim Verification in the Age of Large Language Models A Survey,,
+"We apply queries including LLMs, claim
+verification, fact verification and related keywords on these
+repositories",2,Claim Verification in the Age of Large Language Models A Survey,,
+"We focus primarily on the ACL Anthology, the
+ACM Digital Library, and IEEE Xplore, and proceedings
+of related conferences such as AAAI and IJCAI",2,Claim Verification in the Age of Large Language Models A Survey,,
+"We further
+search on Scopus, Springer Link, and Science@Direct, and
+ArXiv",2,Claim Verification in the Age of Large Language Models A Survey,,
+"We collected and reviewed over 100 papers based on
+our search terms and filter papers based on the following
+search criteria: (i) since the scope of our review is on text-
+based LLM claim verification systems, we omit papers re-
+lated to multimodal approaches (e",2,Claim Verification in the Age of Large Language Models A Survey,,
+", text-to-images), our
+papers from other modalities in claim verification (e",2,Claim Verification in the Age of Large Language Models A Survey,,
+"(ii) since our review focuses on
+LLM-based systems for claim veracity, we omit papers re-
+lated to claim identification, claim detection, and/or detect-
+ing LLM-generated content",2,Claim Verification in the Age of Large Language Models A Survey,,
+"Based on our filtering criteria,
+we collected a total of 49 papers related to LLM-based ap-
+proaches for veracity labeling",2,Claim Verification in the Age of Large Language Models A Survey,,
+"The papers on topic LLM-
+based veracity labeling have been published primarily in the
+ACL Anthology and ACM Digital Library, but also in other
+repositories such as the IEEE Xplore",2,Claim Verification in the Age of Large Language Models A Survey,,
+"We release this curated
+list to be publicly available",2,Claim Verification in the Age of Large Language Models A Survey,,
+"Many pro-
+posed systems make use of only some of these modules",2,Claim Verification in the Age of Large Language Models A Survey,,
+"The
+following subsections describe each of these modules in de-
+tail",2,Claim Verification in the Age of Large Language Models A Survey,,
+"Finally, as described in Panchendrarajan and Zubiaga
+(2024), performance evaluation in these sub-tasks is usually
+carried out using well-established automatic evaluation met-
+rics used in text classification such as Precision, Recall, and
+F-score",2,Claim Verification in the Age of Large Language Models A Survey,,
+"Claim Detection
+Input texts may contain one or more
+statements but not all statements are claims",2,Claim Verification in the Age of Large Language Models A Survey,,
+"Given the input
+text, a claim detection module is designed to identify all the",2,Claim Verification in the Age of Large Language Models A Survey,,
+"Input Claim
+Evidence Retrieval
+LLM Generation
+Prompt Creation
+Label 
+Generation
+Evidence 
+Generation
+Explainable 
+Generation
++
+External Data/ Resources
+Transfer Learning
+Fine-Tuning
+In-Context 
+Learning
+Figure 3: Claim verification pipeline using large language models",3,Claim Verification in the Age of Large Language Models A Survey,,
+"Instead of traditional automatic claim verification, this
+pipeline creates a prompt from the retrieved evidence and the input claim as input to the LLM to generate a label, sentence
+evidence, and/or explanation of its response",3,Claim Verification in the Age of Large Language Models A Survey,,
+"For example, the statement
+’I loved the movie Oppenheimer",3,Claim Verification in the Age of Large Language Models A Survey,,
+"’ is an opinion, whereas the
+statement ’The COVID-19 pandemic started in Texas",3,Claim Verification in the Age of Large Language Models A Survey,,
+"Check-worthy Claim Identification
+Not all the identified
+claims are check-worthy",3,Claim Verification in the Age of Large Language Models A Survey,,
+"In the check-worthy claim identi-
+fication sub-task, given an input claim, the task is to identify
+the claims that include real-world assertions and that may
+need to be verified (Hassan, Li, and Tremayne 2015; Nakov
+et al",3,Claim Verification in the Age of Large Language Models A Survey,,
+"This is a subjective task and it relies on the
+factors like popularity of the claim, public interest in deter-
+mining the veracity of the claim, etc",3,Claim Verification in the Age of Large Language Models A Survey,,
+"For example, the claim
+’The President met the State Governor to discuss the infras-
+tructure deal",3,Claim Verification in the Age of Large Language Models A Survey,,
+"’ is less check-worthy than the claim ’Drinking
+salt water cures COVID",3,Claim Verification in the Age of Large Language Models A Survey,,
+"Claim Matching
+The identified check-worthy claims can
+be matched to the previously fact-checked claims",3,Claim Verification in the Age of Large Language Models A Survey,,
+"Given
+an input claim and a database of previously fact-checked
+claims, claim matching is used to determine if the input
+claim is previously fact-checked and exists in the database
+(Shaar et al",3,Claim Verification in the Age of Large Language Models A Survey,,
+"This can help avoid
+the next steps in the pipeline and a veracity label can be pre-
+dicted directly",3,Claim Verification in the Age of Large Language Models A Survey,,
+"Document/Evidence Retrieval
+If the input claim does not
+exist in the database of fact-checked claims, the claim needs
+to be verified",3,Claim Verification in the Age of Large Language Models A Survey,,
+"In the document or evidence retrieval sub-
+task, all the relevant documents related to the input claim
+are extracted, either from an external database or through
+an internet search/information retrieval(Chen et al",3,Claim Verification in the Age of Large Language Models A Survey,,
+"A
+threshold of how many documents are to be retrieved can be
+predetermined",3,Claim Verification in the Age of Large Language Models A Survey,,
+"Rationale/Sentence Selection
+All the information in the
+retrieved documents is not relevant to the claim",3,Claim Verification in the Age of Large Language Models A Survey,,
+"Hence in
+the rationale selection task, only the information or evidence
+most relevant to the claim are selected to be used to predict
+the veracity label",3,Claim Verification in the Age of Large Language Models A Survey,,
+"Veracity Label Prediction
+Once the rationale is selected,
+the claim along with the rationale and additional features
+if any, are given as input to a machine learning model",3,Claim Verification in the Age of Large Language Models A Survey,,
+"The
+task of the classifier is to predict a veracity label from among
+the following three labels; ’SUPPORTED’, ’REFUTED’, or
+’NOT ENOUGH EVIDENCE’",3,Claim Verification in the Age of Large Language Models A Survey,,
+"In some datasets, the labels
+can also be ’TRUE’, or ’FALSE’, depending on the specific
+task",3,Claim Verification in the Age of Large Language Models A Survey,,
+"Explanation/Justification
+Generation
+Recent
+works
+have focused on generating explanations for the veracity
+labels prediction",3,Claim Verification in the Age of Large Language Models A Survey,,
+"This specific task is focused on generating
+natural language justifications or explanations for the
+prediction considering the claim and evidence to generate
+these explanations",3,Claim Verification in the Age of Large Language Models A Survey,,
+"LLM Approaches
+In this section, we describe the recent advancements that en-
+able LLMs to be robust in fact verification scenarios",3,Claim Verification in the Age of Large Language Models A Survey,,
+"Fig-
+ure 3 shows an example pipeline that encapsulates multi-
+ple component modules (i",3,Claim Verification in the Age of Large Language Models A Survey,,
+", Evidence Retrieval, Prompt
+Creation, Transfer Learning, and LLM Generation) for ver-
+ifying claims",3,Claim Verification in the Age of Large Language Models A Survey,,
+"Different from traditional fact verification
+pipelines that select evidence set for verifying claims, LLM-
+based claim verification conditions generated text based on
+the concatenated input claim and retrieved evidence",3,Claim Verification in the Age of Large Language Models A Survey,,
+"The
+ability of large, pre-trained LMs augmented with retrieval
+enables them to perform well on knowledge-intensive tasks
+such as text generation",3,Claim Verification in the Age of Large Language Models A Survey,,
+"Evidence Retrieval Strategies
+RAG models, which have been developed to combat the is-
+sue of hallucination in LLMs in knowledge-intensive tasks,
+have shown success in the scope of fact verification (Lewis
+et al",3,Claim Verification in the Age of Large Language Models A Survey,,
+"(2020) developed a
+framework that incorporates a retriever to retrieve evidence
+from an external database such as Wikipedia for condition-
+ally generating veracity labels in fact verification",3,Claim Verification in the Age of Large Language Models A Survey,,
+"(2023) demonstrate that RAGs perform well
+on the FEVER shared task (Thorne et al",3,Claim Verification in the Age of Large Language Models A Survey,,
+"2018b)) in few-
+shot settings, showing approximately 5% improvement over
+large-scale LLMs such as Gopher (Rae et al",3,Claim Verification in the Age of Large Language Models A Survey,,
+"2021) with sig-
+nificantly fewer parameters (i",3,Claim Verification in the Age of Large Language Models A Survey,,
+"Other works consider the optimization of either document
+ranking (Glass et al",3,Claim Verification in the Age of Large Language Models A Survey,,
+"Tan 2024) as a crucial step for improving evidence retrieval
+for veracity labeling",4,Claim Verification in the Age of Large Language Models A Survey,,
+"(2023) use
+an autoregressive re-ranker to get the most relevant passages
+from the retriever",4,Claim Verification in the Age of Large Language Models A Survey,,
+"These are then passed to the generation
+model to generate the veracity label",4,Claim Verification in the Age of Large Language Models A Survey,,
+"Despite this, RAG models can often fail when encoun-
+tering long or complex input claims, causing the model to
+incorrectly generate veracity labels or evidence sentences",4,Claim Verification in the Age of Large Language Models A Survey,,
+"Recent works have addressed this issue by segmenting long
+claims into smaller sub-claims and performing multiple
+rounds of retrieval (Khattab, Potts, and Zaharia 2021; Shao
+et al",4,Claim Verification in the Age of Large Language Models A Survey,,
+"Authors in Khattab, Potts, and Zaharia (2021)
+present a pipeline for multi-hop claim verification that uses
+an iterative retriever and neural methods for effective doc-
+ument retrieval and re-ranking",4,Claim Verification in the Age of Large Language Models A Survey,,
+"(2023) show
+that using a re-ranker to distill knowledge to a retriever
+helps close the semantic gaps between a query and docu-
+ment passage when verifying claims using iterative RAGs",4,Claim Verification in the Age of Large Language Models A Survey,,
+"Other works address the issue of complex claims by using
+fine-grained retrieval techniques based on claim decompo-
+sition (Chen et al",4,Claim Verification in the Age of Large Language Models A Survey,,
+"(2023a) generate sub-questions based on
+a claim, which a document retriever uses to retrieve rele-
+vant documents",4,Claim Verification in the Age of Large Language Models A Survey,,
+"A fine-grained retriever retrieves top-k text
+spans as evidence based on a k-word window and BM25",4,Claim Verification in the Age of Large Language Models A Survey,,
+"Authors in Zhang and Gao (2023) decompose a claim into
+sub-claims and generate questions to verify the sub-claims",4,Claim Verification in the Age of Large Language Models A Survey,,
+"External knowledge sources are used to retrieve relevant in-
+formation to verify the sub-claims and generate a final verac-
+ity label",4,Claim Verification in the Age of Large Language Models A Survey,,
+"NEWSCLAIMS: A New Benchmark for Claim Detection from News
+with Attribute Knowledge
+Revanth Gangi Reddy1, Sai Chetan Chinthakindi1, Zhenhailong Wang1, Yi R",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Fung1,
+Kathryn Conger2, Ahmed Elsayed2, Martha Palmer2, Preslav Nakov3,
+Eduard Hovy4,5, Kevin Small6, Heng Ji1
+1UIUC
+2CU Boulder
+3QCRI-HBKU
+4DARPA
+5CMU
+6Amazon
+{revanth3,hengji}@illinois",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"edu
+Abstract
+Claim detection and veriﬁcation are crucial
+for news understanding and have emerged
+as promising technologies for mitigating mis-
+information and disinformation in the news",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"However, most existing work has focused on
+claim sentence analysis while overlooking ad-
+ditional crucial attributes (e",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", the claimer and
+the main object associated with the claim)",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"In
+this work, we present NEWSCLAIMS, a new
+benchmark for attribute-aware claim detection
+in the news domain",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"We extend the claim de-
+tection problem to include extraction of ad-
+ditional attributes related to each claim and
+release 889 claims annotated over 143 news
+articles",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"NEWSCLAIMS1 aims to benchmark
+claim detection systems in emerging scenar-
+ios, comprising unseen topics with little or no
+training data",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"To this end, we see that zero-
+shot and prompt-based baselines show promis-
+ing performance on this benchmark, while still
+considerably behind human performance",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"1
+Introduction
+The internet era has ushered in an explosion of
+online content creation, resulting in increased con-
+cerns regarding misinformation in news, online
+debates, and social media",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"A key element of iden-
+tifying misinformation is detecting the claims and
+the arguments that have been presented",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"In this
+regard, news articles are particularly interesting as
+they contain claims in various formats: from ar-
+guments by journalists to reported statements by
+prominent public ﬁgures",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Check-worthiness estimation aims to decide if a
+piece of text is worth fact-checking, i",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", whether it
+contains an important veriﬁable factual claim (Has-
+san et al",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", 2021) largely ignore
+relevant attributes of the claim (e",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", the claimer
+and the primary object associated with the claim)",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"1The code and data have been made publicly available
+here: https://github",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"com/blender-nlp/NewsClaims
+Figure 1: A news article containing a claim regarding
+the origin of COVID-19 with the claim sentence in ital-
+ics, the claim span in red, and the claimer in blue",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Also
+shown are the claimer stance and the claim object",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Moreover, current claim detection tasks mainly
+identify claims in debates (Gencheva et al",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", 2019a), and social me-
+dia (Nakov et al",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"News articles, on the other hand, have more com-
+plex arguments, requiring a deeper understanding
+of what each claim is about and identifying where
+it comes from",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Thus, here we introduce the notion
+of claim object, which we deﬁne as an entity that
+identiﬁes what is being claimed with respect to the
+topic of the claim",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Figure 1 shows a claim about
+the origin of COVID-19, suggesting that the virus
+came from space, which is the claim object",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"We fur-
+ther identify the claimer, which could be useful for
+fact-checking organizations to examine how cur-
+rent claims compare to previous ones by the same
+person/organization",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"In this regard, we extend the
+claim detection task to ask for the extraction of
+more attributes related to the claim",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Speciﬁcally,
+given a news article, we aim to extract all claims
+pertaining to a set of topics along with the corre-
+sponding claim span, the claimer, the claimer’s
+stance, and the claim object for each claim",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"The
+claim attributes enable comparing claims at a more
+ﬁne-grained level: claims with the same topic,
+object and stance can be considered equivalent
+arXiv:2112",1,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"whereas those with similar claim objects but op-
+posing stance could be contradicting",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"We note that
+while identifying the claim span and stance have
+been explored independently in prior work (Levy
+et al",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", 2021a), we bring them
+into the purview of a uniﬁed claim detection task",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"To promote research in this direction, we release
+NEWSCLAIMS, a new evaluation benchmark for
+claim detection",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"We consider this in an evaluation
+setting since claims about new topics can emerge
+rapidly2, requiring systems that are effective un-
+der zero/few-shot settings",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"NEWSCLAIMS aims to
+study how existing NLP techniques can be lever-
+aged to tackle claim detection in emerging scenar-
+ios and regarding previously unseen topics",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"We
+explore multiple zero/few-shot strategies for our
+subtasks including topic classiﬁcation, stance detec-
+tion, and claim object detection",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"This is in line with
+recent progress in using pre-trained language mod-
+els in zero/few-shot settings (Brown et al",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Such approaches can be adapted
+to new use cases and problems as they arise without
+the need for large additional training data",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"In our benchmark, all news articles are related
+to the COVID-19 pandemic, motivated by multiple
+considerations",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"First, COVID-19 has gained exten-
+sive media coverage, with the World Health Organi-
+zation coining the term infodemic3 to refer to disin-
+formation related to COVID-19 (Naeem and Bhatti,
+2020) and suggesting that “fake news spreads faster
+and more easily than this virus”",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Second, this is
+an emerging scenario with limited previous data
+related to the virus, making it a suitable candidate
+for evaluating claim detection in a low-resource
+setting",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"NEWSCLAIMS covers claims about four
+COVID-19 topics, namely the origin of the virus,
+possible cure for the virus, the transmission of the
+virus, and protecting against the virus",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"2harmful-content-blog-post
+3COVID-19 Infodemic
+2
+Related Work
+Automatic fact-checking has a number of sub-tasks
+such as detecting check-worthy claims (Jaradat
+et al",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", 2019), comparing them
+against previously-fact checked claims (Shaar et al",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", 2021), retrieving evidence rele-
+vant to a claim (Karadzhov et al",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", 2019) and ﬁnally inferring the veracity of
+the claim (Karadzhov et al",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Our work here is
+positioned in the space of identifying check-worthy
+claims, also known as check-worthiness estimation",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"In this work, we show that identifying the topic
+of the claim is beneﬁcial, by leveraging it towards
+stance detection (Section 5",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"3) and claim object de-
+tection (Section 5",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Argumentation mining (Palau and Moens, 2009;
+Stab and Gurevych, 2014; Stab et al",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", 2018) in-
+cludes context-dependent claim detection (Levy
+et al",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", 2014, 2017), which entails detecting claims
+speciﬁcally relevant to a predeﬁned topic",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"However,
+claims in the context of argumentation are neither
+necessarily factual nor veriﬁable",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Moreover, prior
+work on both check-worthiness estimation and ar-
+gumentation mining did not deal with identifying
+additional claim attributes, such as the claimer, or
+the source of the claim, and the claim object",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"The claimer detection subtask is related to attri-
+bution in the news",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Current attribution methods
+are mainly sentence-level (Pareti, 2016a) or only
+involve direct quotations (Elson and McKeown,
+2010)",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"In contrast, we require cross-sentence rea-
+soning for identifying the claimer as it may not be
+present in the claim sentence (see Figure 1)",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"There has been recent work addressing claims re-
+lated to COVID-19",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"(2021) proposed
+a new FEVER-like (Thorne et al",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", 2018) dataset,
+where given a claim, the task is to identify relevant
+evidence and to verify whether it refutes or supports
+the claim; however, this does not tackle identifying
+the claims or the claimer",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"There has also been work
+on identifying the check-worthiness of tweets re-
+lated to COVID-19 (Alam et al",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+",
+2021); however, unlike news articles, tweets do not
+require attribution for claimer identiﬁcation",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"3
+Proposed Claim Detection Task
+Our task is to identify claims related to a set of
+topics in a news article along with corresponding
+attributes such as the claimer, the claim object, and
+the claim span and stance, as shown in Figure 2",2,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Figure 2: An example demonstrating our proposed claim detection task, and its subtasks",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"The following attributes
+are to be extracted for each claim: the claimer, claimer’s stance, claim object, and claim span",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Claim Sentence Detection: Given a news article,
+the ﬁrst subtask is to extract claim sentences rele-
+vant to a set of pre-deﬁned topics",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"This involves
+ﬁrst identifying sentences that contain factually
+veriﬁable claims, similar to prior work on check-
+worthiness estimation, and then selecting those that
+are related to the target topics",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"To address misin-
+formation in an emerging real-world setting, we
+consider the following topics related to COVID-19:
+Origin of the virus: claims related to the origin
+of the virus (i",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", location of ﬁrst detection, zoono-
+sis, ‘lab leak’ theories); Transmission of the virus:
+claims related to who/what can transmit the virus or
+conditions favorable for viral transmission; Cure
+for the virus: claims related to curing the virus,
+(e",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", via medical intervention after infection); and
+Protection from the virus: claims related to pre-
+cautions against viral infection",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Claimer Detection: Claims within a news article
+can come from various types of sources such as
+an entity (e",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", person, organization) or published
+artifact (e",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"In such
+cases, the claimer identity can usually be extracted
+from the news article itself",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"However, if the claim
+is asserted by the article author or if no attribu-
+tion is speciﬁed or inferrable, then the article au-
+thor, i",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"the journalist, is considered to be the
+claimer",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"The claimer detection subtask involves
+identifying whether the claim is made by a journal-
+ist or whether it is reported in the news article, in
+which case the source is also extracted",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Moreover,
+sources of such reported claims need not be within
+the claim sentence",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"In our datatset NEWSCLAIMS,
+the claimer span was extracted from outside of the
+claim sentence for about 47% of the claims",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Thus,
+the claimer detection subtask in our benchmark
+requires considerable document-level reasoning,
+thus making it harder than existing attribution tasks
+(Pareti, 2016b; Newell et al",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", 2018), which require
+only sentence-level reasoning",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Claim Object Detection: The claim object relates
+to what is being claimed in the claim sentence with
+respect to the topic",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"For example, in a claim regard-
+ing the virus origin, the claim object could be the
+species of origin in zoonosis claims, or who created
+the virus in bioengineering claims",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Table 1 shows
+examples of claim objects from each topic",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"We see
+that the claim object is usually an extractive span
+within the claim sentence",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Identifying the claim
+object helps to better understand the claims and po-
+tentially identify claim–claim relations, since two
+claims with the same object are likely to be similar",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Topic
+Claim Sentence
+Origin
+The genetic data is pointing to this virus
+coming from a bat reservoir, he said",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Transmission
+The virus lingers in the air indoors, in-
+fecting those nearby
+Cure
+Vitamin C is an effective treatment for
+COVID-19",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Protection
+Taking a hot bath prevents you from get-
+ting COVID-19",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Table 1: Examples showing the claim object in bold for
+claims corresponding to NEWSCLAIMS topics",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Stance Detection:
+This subtask involves out-
+putting whether the claimer is asserting (afﬁrm)
+or refuting (refute) a claim within the given claim
+sentence",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"We note that stance detection in NEWS-
+CLAIMS differs from the task formulation used in
+other stance detection datasets (Stab et al",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", 2019; Allaway and McKeown,
+2020) as it involves identifying the claimer’s stance
+within a claim sentence – whereas prior stance de-
+tection tasks, as described in a recent survey by
+Hardalov et al",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"(2021b), involve identifying the
+stance for target–context pairs",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"For example, given
+pairs such as claim–evidence or headline–article, it
+involves identifying whether the evidence/article at
+hand supports or refutes a given claim/headline",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Claim Span Detection: Given a claim sentence,
+this subtask aims to identify the exact claim bound-",3,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"(a) claim counts per news article
+(b) claims by journalists vs",4,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"reported
+ones, along with claimer coverage for
+reported claims
+(c) coverage of claimer within a win-
+dow size based on number of sentences
+around the claim sentence
+Figure 3: NEWSCLAIMS benchmark statistics: (a) number of claims per news article, (b) claims by journalists vs",4,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"reported claims, and (c) claimer coverage by window size within the news article for reported claims",4,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"aries within the sentence, including the actual claim
+content, usually without any cue words (e",4,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+", as-
+serted, suggested) and frequently a contiguous sub-
+span of the claim sentence",4,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+"Identifying the precise
+claim conveyed within the sentence can be useful
+for downstream tasks such as clustering claims and
+identifying similar or opposing claims",4,NEWSCLAIMS A New Benchmark for Claim Detection from News 004,,
+":(0123456789)
+Journal of Computational Social Science (2024) 7:1727–1752
+https://doi",1,Propositional claim detection a task and dataset 005,,
+"PCD is appli-
+cable in practical scenarios, for instance, for the support of fact-checkers, as well as 
+in many areas of communication research",1,Propositional claim detection a task and dataset 005,,
+"By leveraging insights from philosophy 
+and linguistics, PCD is a more systematic and transparent version of claim detection 
+than previous approaches",1,Propositional claim detection a task and dataset 005,,
+"This paper presents the theoretical background for PCD 
+and discusses its advantages over alternative approaches to claim detection",1,Propositional claim detection a task and dataset 005,,
+"Exten-
+sive experiments on models trained on the dataset are conducted and result in an F1
+-score of up to 0",1,Propositional claim detection a task and dataset 005,,
+"Moreover, PCD’s generalization across domains is tested",1,Propositional claim detection a task and dataset 005,,
+"Mod-
+els trained on the dataset show stable performance for text from previously unseen 
+domains such as different topical domains or writing styles",1,Propositional claim detection a task and dataset 005,,
+"PCD is a basic task that 
+finds application in various fields and can be integrated with many other computa-
+tional tools",1,Propositional claim detection a task and dataset 005,,
+"Keywords  Misinformation · NLP · Claim detection · Truth-values
+Introduction
+Extracting meaning from text is a central part of communication research and in 
+the recent years this is increasingly done with the aid of computational methods 
+[1]",1,Propositional claim detection a task and dataset 005,,
+"This paper introduces a (German-language) dataset for Propositional Claim 
+Detection (PCD), a Natural Language Processing (NLP) task that aims at classify-
+ing sentences that can be true or false",1,Propositional claim detection a task and dataset 005,,
+"Models trained on this dataset can be used 
+for various purposes in communication research and beyond",1,Propositional claim detection a task and dataset 005,,
+"One natural domain 
+ *	 Sami Nenno 
+	
+sami",1,Propositional claim detection a task and dataset 005,,
+"de
+1	
+Centre for Media, Communication and Information Research, University of Bremen, Linzer Str",1,Propositional claim detection a task and dataset 005,,
+"4, 28359 Bremen, Bremen, Germany
+2	
+AI & Society Lab, Humboldt Institute for Internet and Society, Französische Str",1,Propositional claim detection a task and dataset 005,,
+"1728
+	
+Journal of Computational Social Science (2024) 7:1727–1752
+1 3
+of application is misinformation",2,Propositional claim detection a task and dataset 005,,
+"PCD is in line with previous approaches to claim 
+detection that aim at the support of fact-checkers by identifying claims that poten-
+tially carry misinformation [2]",2,Propositional claim detection a task and dataset 005,,
+"Sentences that can be true or false are known in philosophy and mathematical 
+logic as sentences with propositional content",2,Propositional claim detection a task and dataset 005,,
+"As propositional sentences are almost 
+exclusively declarative sentences, PCD mostly leverages grammatical information 
+(e",2,Propositional claim detection a task and dataset 005,,
+", word order, punctuation, or tense) for classification",2,Propositional claim detection a task and dataset 005,,
+"Grammatical or syntacti-
+cal information has often been neglected in computational methods for social sci-
+entific research [3]",2,Propositional claim detection a task and dataset 005,,
+"However, it has useful properties that are beneficial to methods 
+like PCD",2,Propositional claim detection a task and dataset 005,,
+"A core assumption of this paper is that the grammatical information that 
+is leveraged by PCD remains relatively stable across domains and accordingly PCD-
+models can be used in various contexts and purposes",2,Propositional claim detection a task and dataset 005,,
+"The guiding questions of this 
+paper are if PCD can reach competitive results to other approaches to claim detec-
+tion and if these results remain stable across texts of different topical domain, time 
+periods or writing styles",2,Propositional claim detection a task and dataset 005,,
+"As it will be shown, both questions have a positive answer",2,Propositional claim detection a task and dataset 005,,
+"This paper makes multiple contributions: (1) a new task design for the detection 
+of claims is introduced, (2) a dataset for PCD is described and made publicly avail-
+able, (3) an array of models is tested on the dataset with a special focus on domain 
+adaptation",2,Propositional claim detection a task and dataset 005,,
+"1
+Background
+Automated fact‑checking
+Guo et al",2,Propositional claim detection a task and dataset 005,,
+"[4] provide a survey of different sub-tasks for automated fact-checking 
+and find research on claim detection, retrieving previously checked claims, claim 
+verification, and generating a textual justification for a verdict",2,Propositional claim detection a task and dataset 005,,
+"Especially claim ver-
+ification has received much attention (see e",2,Propositional claim detection a task and dataset 005,,
+", [5, 6] for a survey on the related task 
+of stance detection)",2,Propositional claim detection a task and dataset 005,,
+"For this task, a model is supposed to derive an evidence-based 
+verdict (true, false, etc",2,Propositional claim detection a task and dataset 005,,
+"However, there has been critique on this 
+task",2,Propositional claim detection a task and dataset 005,,
+"[7] argue that many approaches are developed and tested in 
+an unrealistic setup and cannot refute real-world misinformation",2,Propositional claim detection a task and dataset 005,,
+"[8] find that human fact-checkers have little trust in a fully-automated pipeline and 
+rather find interest in tools like claim detection that only aim at partial automation",2,Propositional claim detection a task and dataset 005,,
+"Models for claim detection are trained to identify claims that potentially carry 
+misinformation",2,Propositional claim detection a task and dataset 005,,
+"The aim is to decrease the workload of human fact-checkers by pro-
+viding a pre-selection of relevant claims that can then be verified",2,Propositional claim detection a task and dataset 005,,
+"A claim is usually 
+understood as one isolated sentence and claim detection is most often designed as a 
+binary sentence classification task",2,Propositional claim detection a task and dataset 005,,
+"[2] use 
+a taxonomy with three classes, Konstantinovskiy et al",2,Propositional claim detection a task and dataset 005,,
+"[9] have seven classes, and 
+1  The code can be found on https://​github",2,Propositional claim detection a task and dataset 005,,
+"​com/​SamiN​enno/​Claim-​Detec​tion and the dataset is available 
+on Gesis: https://​search",2,Propositional claim detection a task and dataset 005,,
+"1729
+1 3
+Journal of Computational Social Science (2024) 7:1727–1752	
+Gencheva et al",3,Propositional claim detection a task and dataset 005,,
+"However, often even these approaches 
+are tackled in a binary format, too [11]",3,Propositional claim detection a task and dataset 005,,
+"The most notable approach to claim detection is the Claimbuster-project2 that 
+contributed a widely used dataset [2] and built models that achieved strong results 
+on it [11]",3,Propositional claim detection a task and dataset 005,,
+"In their, and most other formulations, claim detection is the task of clas-
+sifying checkworthy claims (Table  1)",3,Propositional claim detection a task and dataset 005,,
+"Checkworthiness is defined differently by 
+different authors",3,Propositional claim detection a task and dataset 005,,
+"[2] checkworthy claims are understood 
+as “factual claims that the general public will be interested in learning about their 
+veracity”",3,Propositional claim detection a task and dataset 005,,
+"[20] asked the annotators to label a sentence as checkworthy 
+if the they could affirm the following question:” Do you think that a professional 
+fact-checker should verify the claim in the tweet",3,Propositional claim detection a task and dataset 005,,
+"” A third approach was taken by, 
+for example, Shaar et al",3,Propositional claim detection a task and dataset 005,,
+"[14], who matched sentences from US-presidential debates 
+with factchecking articles by PolitiFact and labeled them as checkworthy if there 
+was a corresponding article",3,Propositional claim detection a task and dataset 005,,
+This and similar definitions have also attracted criticism,3,Propositional claim detection a task and dataset 005,,
+"Allein and Moens [21] 
+note that checkworthiness depends on the prior knowledge of a person, which makes 
+the concept inherently subjective",3,Propositional claim detection a task and dataset 005,,
+"They conclude that checkworthiness is an inapt 
+concept to guide claim detection",3,Propositional claim detection a task and dataset 005,,
+"One can add that the definition’s reliance on “the 
+general public” is already idealized as the public is often fragmented and different 
+social groups differ in their values or political ideologies",3,Propositional claim detection a task and dataset 005,,
+"Both aspects are relevant 
+to determine if a claim should be fact-checked",3,Propositional claim detection a task and dataset 005,,
+"Arguing that checkworthiness is an editiorial decision that is best left to human 
+fact-checkers, Konstantinowskiy et al",3,Propositional claim detection a task and dataset 005,,
+"[9] propose an alternative formulation of the 
+claim detection task",3,Propositional claim detection a task and dataset 005,,
+"91
+US-Presidential Debates
+CT19 [12]
+23,501
+CW***
+MAP =",3,Propositional claim detection a task and dataset 005,,
+"17
+US-Presidential Debates
+CT20 [13]
+962
+CW**
+MAP =",3,Propositional claim detection a task and dataset 005,,
+"81
+Tweets on COVID-19
+CT21 [14]
+45,619
+CW***
+MAP =",3,Propositional claim detection a task and dataset 005,,
+"40
+US-Presidential Debates
+CT22 [15]
+2891
+CW**
+F1 =",3,Propositional claim detection a task and dataset 005,,
+"70
+Tweets on COVID-19
+TATHYA [16]
+15,735
+CW***
+F1 =",3,Propositional claim detection a task and dataset 005,,
+"26
+US-Presidential Debates
+Claimrank [10]
+5415
+CW***
+MAP =",3,Propositional claim detection a task and dataset 005,,
+"43
+US-Presidential Debates
+IndianClaims [17]
+953
+CW*
+F1 =",3,Propositional claim detection a task and dataset 005,,
+"70
+Indian political debates
+C/NC [9]
+4777
+F
+F1 =",3,Propositional claim detection a task and dataset 005,,
+"83
+UK political TV-shows
+Germeval [18]
+4188
+F
+F1 =",3,Propositional claim detection a task and dataset 005,,
+"76
+Facebook Comments
+LESA [19]
+9981
+F
+F1 =",3,Propositional claim detection a task and dataset 005,,
+"1730
+	
+Journal of Computational Social Science (2024) 7:1727–1752
+1 3
+statistics, legal affairs, or causal relationships and opposed to sentences about per-
+sonal experiences like “I woke up this morning at 7 a",4,Propositional claim detection a task and dataset 005,,
+"[18] and 
+Wilms [22] created a German language dataset for the same task",4,Propositional claim detection a task and dataset 005,,
+"However, in their 
+taxonomy, a positive example is a claim to truth or a sentence that provides exter-
+nal evidence (links, quotes, etc",4,Propositional claim detection a task and dataset 005,,
+) rather than internal evidence (personal experience),4,Propositional claim detection a task and dataset 005,,
+"[19] define a claim as stating or asserting that something is the case, 
+with or without providing evidence or proof",4,Propositional claim detection a task and dataset 005,,
+"They use a similar scheme as the previ-
+ous authors but they also consider personal experiences and humor/sarcasm as posi-
+tive instances",4,Propositional claim detection a task and dataset 005,,
+All three approaches reach strong results (see Table 1),4,Propositional claim detection a task and dataset 005,,
+"Computational linguistics
+A line of research in computational linguistics that shares many similarities to 
+PCD is Dialogue Act classification (DA)",4,Propositional claim detection a task and dataset 005,,
+"One famous corpus is the Switchboard 
+Dialogue Act corpus (SwDA) that was originally introduced by Jurafsky et al",4,Propositional claim detection a task and dataset 005,,
+"[23] 
+and provides a fine-grained labeling scheme of 43 classes that involve, for exam-
+ple, opinion-statements, non-opinion-statements, or different types of questions",4,Propositional claim detection a task and dataset 005,,
+"The 
+task is approached as text classification but also as sequence labeling and there have 
+been attempts [24] that reach scores of 82",4,Propositional claim detection a task and dataset 005,,
+"DA and PCD follow the same theoretical tradition that is based on the works 
+of Austin and Searle",4,Propositional claim detection a task and dataset 005,,
+"Argumentation Mining (AM) is closely related to claim detection as it aims at 
+identifying the components of an argument and their relation",4,Propositional claim detection a task and dataset 005,,
+"Similar to claim detec-
+tion, extracting claims lies at the heart of AM",4,Propositional claim detection a task and dataset 005,,
+"However, their definitions are not the 
+same",4,Propositional claim detection a task and dataset 005,,
+In AM a claim is understood as a conclusion rather than a premise [e,4,Propositional claim detection a task and dataset 005,,
+", [26]], 
+while for claim detection both can be claims",4,Propositional claim detection a task and dataset 005,,
+"Moreover, often sentences or textual 
+spans that are understood as claims in AM would rather qualify as opinions from the 
+perspective of claim detection",4,Propositional claim detection a task and dataset 005,,
+"The structure of propositional claim detection
+Propositional content
+PCD is about detecting sentences with propositional content",4,Propositional claim detection a task and dataset 005,,
+"This term is used in 
+philosophy and mathematical logic and denotes sentences that have a truth value, 
+i",4,Propositional claim detection a task and dataset 005,,
+"The concept of truth value is different from the 
+concept of truth",4,Propositional claim detection a task and dataset 005,,
+"Sentences that have a truth value are possibly but not necessarily 
+true",4,Propositional claim detection a task and dataset 005,,
+Take the sentences “All cows are ruminants,4,Propositional claim detection a task and dataset 005,,
+"” Even without knowing the word “ruminant”, one can acknowl-
+edge that the first sentence can be true or false but the second cannot",4,Propositional claim detection a task and dataset 005,,
+"Accordingly, 
+we do not need to know if a sentence is true, in order to know that it has a truth 
+value",4,Propositional claim detection a task and dataset 005,,
+"Note that sentences with truth values are a broader class than factual sen-
+tences and the two sentence types should not be confused (see “Discussion” section)",4,Propositional claim detection a task and dataset 005,,
+"1731
+1 3
+Journal of Computational Social Science (2024) 7:1727–1752	
+Sentences that carry a truth value meet two minimal conditions: (1) the sentence 
+must have a condition of satisfaction and (2) this condition must have a word-to-
+world direction of fit",5,Propositional claim detection a task and dataset 005,,
+"For a sentence to have a condition of satisfaction is to have a 
+relation to the world that can be fulfilled",5,Propositional claim detection a task and dataset 005,,
+"3 For example, saying that Japan has a total 
+population of (roughly) 125 million relates to the world and it is satisfied because 
+Japan does have about 125 million citizens (a)",5,Propositional claim detection a task and dataset 005,,
+"Saying that Japan has the dirtiest 
+streets worldwide also relates to the world but it is not satisfied because Japan’s 
+streets are extremely clean (b)",5,Propositional claim detection a task and dataset 005,,
+"And if the Japanese digital minister pledges that the 
+government will offer more digital services, his sentence relates to the world and it 
+is satisfied if the government actually manages to provide more digital services (c)",5,Propositional claim detection a task and dataset 005,,
+"However, other sentence types like apologies or congratulations cannot be satisfied",5,Propositional claim detection a task and dataset 005,,
+"If the digital minister of Japan apologizes for not providing more digital services, his 
+utterance cannot be satisfied",5,Propositional claim detection a task and dataset 005,,
+"The purpose of his statement is neither referring to a 
+desired future state of affairs nor is it a statement that can be true or false",5,Propositional claim detection a task and dataset 005,,
+"It is meant 
+as an apology, which is something different",5,Propositional claim detection a task and dataset 005,,
+"Research and Applications
+Retrieval augmented scientific claim verification
+Hao Liu 
+, PhD1, Ali Soroush, MD2, Jordan G",1,Retrieval augmented scientific claim verification,,
+"edu); Chunhua Weng, PhD, Department of Biomedical Informatics, Columbia University, 622 W 168 Street, PH20-room 
+407, New York, NY 10027, United States (chunhua@columbia",1,Retrieval augmented scientific claim verification,,
+"Weng contributed equally
+Abstract 
+Objective: To automate scientific claim verification using PubMed abstracts",1,Retrieval augmented scientific claim verification,,
+"We also created an ensemble of three state-of-the-art deep learning models to classify rationale of support, refute, and neutral",1,Retrieval augmented scientific claim verification,,
+"We then constructed CoVERt, a new COVID VERification dataset comprising 15 PICO-encoded drug claims accompanied by 96 manually 
+selected and labeled clinical trial abstracts that either support or refute each claim",1,Retrieval augmented scientific claim verification,,
+"We used CoVERt and SciFact (a public scientific claim verifi­
+cation dataset) to assess CliVER’s performance in predicting labels",1,Retrieval augmented scientific claim verification,,
+"Finally, we compared CliVER to clinicians in the verification of 19 claims 
+from 6 disease domains, using 189 648 PubMed abstracts extracted from January 2010 to October 2021",1,Retrieval augmented scientific claim verification,,
+"Results: In the evaluation of label prediction accuracy on CoVERt, CliVER achieved a notable F1 score of 0",1,Retrieval augmented scientific claim verification,,
+"92, highlighting the efficacy of the 
+retrieval-augmented models",1,Retrieval augmented scientific claim verification,,
+"The ensemble model outperforms each individual state-of-the-art model by an absolute increase from 3% to 11% 
+in the F1 score",1,Retrieval augmented scientific claim verification,,
+"Moreover, when compared with four clinicians, CliVER achieved a precision of 79",1,Retrieval augmented scientific claim verification,,
+"Conclusion: CliVER demonstrates its early potential to automate scientific claim verification using retrieval-augmented strategies to harness 
+the wealth of clinical trial abstracts in PubMed",1,Retrieval augmented scientific claim verification,,
+Future studies are warranted to further test its clinical utility,1,Retrieval augmented scientific claim verification,,
+Key words: natural language processing; clinical trial; evidence retrieval; deep learning; evidence appraisal,1,Retrieval augmented scientific claim verification,,
+"Introduction
+In an era of exponential growth of clinical publication, it has 
+been increasingly challenging to identify the most relevant 
+articles and extract relevant information for a given scientific 
+claim",1,Retrieval augmented scientific claim verification,,
+"1 For example, LitCovid, the primary bibliographic 
+database to track up-to-date published research on COVID- 
+19 and SARS-CoV-2 on PubMed, has grown to more than 
+300 000 relevant articles in about 2 years and continues pro­
+liferating with 10 000 new articles added each month",1,Retrieval augmented scientific claim verification,,
+"As new evidence emerges, scientific understand­
+ings of many topics constantly evolve",1,Retrieval augmented scientific claim verification,,
+"found that nearly one-third of highly cited clinical stud­
+ies are eventually refuted as subsequent studies reach 
+contradictions or find the original claim overstated",1,Retrieval augmented scientific claim verification,,
+"It is promising to mitigate these problems by implementing 
+an automated framework that efficiently retrieves high- 
+quality evidence for scientific claim verification",1,Retrieval augmented scientific claim verification,,
+"Amongst the 
+plethora of clinical publications, randomized controlled trials 
+(RCTs) stand as the most reliable sources of medical evidence 
+next to meta-analysis or systematic reviews, and are essential 
+for both clinical question answering6,7 and evidence-based 
+medicine practice",1,Retrieval augmented scientific claim verification,,
+"8,9 Therefore, here, we focus on retrieving 
+RCT studies for biomedical scientific claim verification",1,Retrieval augmented scientific claim verification,,
+"Verifying scientific claims falls under the larger domain of 
+fact verification",1,Retrieval augmented scientific claim verification,,
+"10,11 In the biomedical domain, Wadden 
+et al",1,Retrieval augmented scientific claim verification,,
+"introduced the concept of scientific claim verification 
+with a three-step approach that includes “Document 
+Received: December 1, 2023; Revised: January 19, 2024; Editorial Decision: February 8, 2024; Accepted: February 14, 2024 
+# The Author(s) 2024",1,Retrieval augmented scientific claim verification,,
+Published by Oxford University Press on behalf of the American Medical Informatics Association,1,Retrieval augmented scientific claim verification,,
+This is an Open Access article distributed under the terms of the Creative Commons Attribution License (https://creativecommons,1,Retrieval augmented scientific claim verification,,
+"0/), which 
+permits unrestricted reuse, distribution, and reproduction in any medium, provided the original work is properly cited",1,Retrieval augmented scientific claim verification,,
+"JAMIA Open, 2024, 7(1), ooae021 
+https://doi",1,Retrieval augmented scientific claim verification,,
+"1093/jamiaopen/ooae021 
+Advance access publication 21 February 2024 
+Research and Applications 
+Downloaded from https://academic",1,Retrieval augmented scientific claim verification,,
+com/jamiaopen/article/7/1/ooae021/7612234 by guest on 14 July 2025,1,Retrieval augmented scientific claim verification,,
+"Retrieval,” “Sentence Selection,” and “Textual Entailment” 
+modules",2,Retrieval augmented scientific claim verification,,
+"12 To facilitate the development and validation of 
+these algorithms, the authors curated the SciFact12 dataset",2,Retrieval augmented scientific claim verification,,
+"Notably, the first “Document Retrieval” module used text 
+similarity to retrieve the most relevant abstracts without lev­
+eraging language embeddings",2,Retrieval augmented scientific claim verification,,
+"13 applied a simi­
+lar three-step framework but exploited the power of the T5 
+language model",2,Retrieval augmented scientific claim verification,,
+"14 However, these studies may suffer from 
+error propagation",2,Retrieval augmented scientific claim verification,,
+"15 proposed a 
+paragraph-level, multi-task learning model and used BioSent­
+Vec to compute the cosine similarities between claim and 
+abstract embeddings",2,Retrieval augmented scientific claim verification,,
+"16 leveraged the Long­
+former model17 to cross-encode the claim, title, and abstract 
+together as input with minimal truncations",2,Retrieval augmented scientific claim verification,,
+"These studies 
+achieved impressive performance in scientific claim verifica­
+tion against a relatively small (<10 000) document reposi­
+tory",2,Retrieval augmented scientific claim verification,,
+"They were not evaluated in real scientific use cases 
+where hundreds of thousands of documents are queried 
+against",2,Retrieval augmented scientific claim verification,,
+"To the best of our knowledge, none of these studies 
+focus on RCTs, which are substantially different from obser­
+vational epidemiological studies (eg, cohort, case-control, 
+and cross-sectional studies) and other topics within biomedi­
+cine (eg, laboratory-based research)",2,Retrieval augmented scientific claim verification,,
+"Identifying the best evidence requires massive RCTs to ena­
+ble rigorous and reliable study appraisal—for example, rele­
+vance, allocation concealment, intention to treat analysis, 
+and relevant outcomes",2,Retrieval augmented scientific claim verification,,
+"18,19 Retrieval-augmented methodolo­
+gies harness the capabilities of multiple information retrieval 
+techniques (such as document vectorization,20,21 semantic 
+similarity-based retrievers,22,23 and similarity ranking24,25
+mechanisms)",2,Retrieval augmented scientific claim verification,,
+"The adoption of these techniques facilitates an 
+efficient and accurate search through vast datasets of RCT 
+studies, improving the identification of the most relevant 
+evidence",2,Retrieval augmented scientific claim verification,,
+"Existing claim verification datasets have a specific focus, 
+making them suitable for applications in certain clinical 
+domains",2,Retrieval augmented scientific claim verification,,
+"For instance, FEVER is a general-domain fact- 
+checking dataset created by re-writing Wikipedia sentences 
+into atomic claims, verified against Wikipedia articles",2,Retrieval augmented scientific claim verification,,
+"11
+PUBHEALTH gathered public health claims from fact- 
+checking websites (eg, Snopes) and verified them against 
+news articles with gold-standard labels crafted by journal­
+ists",2,Retrieval augmented scientific claim verification,,
+"26 ManConCorpus is a manually annotated corpus con­
+taining pairs of claims and sentences from 259 abstracts 
+associated with 24 systematic reviews on cardiovascular dis­
+ease",2,Retrieval augmented scientific claim verification,,
+"27
+HealthVer28
+focused on COVID-related claims, 
+obtained by rewriting answers to questions from TREC- 
+COVID29 and validated against the CORD19 corpus",2,Retrieval augmented scientific claim verification,,
+"30
+COVID-Fact scraped COVID-19 claims from a social media 
+platform (Reddit) and verified them against linked scientific 
+papers and documents retrieved via Google search",2,Retrieval augmented scientific claim verification,,
+"31 While 
+such datasets are essential for developing claim verification 
+systems, only some include information regarding study 
+design that is key for accurate evidence appraisal",2,Retrieval augmented scientific claim verification,,
+"Therefore, 
+existing datasets may not be suitable for verifying clinical- 
+related scientific claims since they do not consider the 
+strength of studies that produced the evidence",2,Retrieval augmented scientific claim verification,,
+"To improve 
+verification accuracy in the clinical domain, we introduce a 
+new Covid VERification dataset (CoVERt)",2,Retrieval augmented scientific claim verification,,
+"It consists of 15 
+claims, 96 abstracts with “support” or “refute” labels, and a 
+set of sentences extracted from the abstracts containing 
+rationales for claim verification",2,Retrieval augmented scientific claim verification,,
+"The claims were encoded 
+using the PICO framework (Population, Intervention, 
+Comparison, and Outcome), a widely-used knowledge repre­
+sentation for clinical questions",2,Retrieval augmented scientific claim verification,,
+"32 This deliberate design 
+choice of CoVERt facilitates seamless alignment with 
+extracted evidence from RCTs, thereby providing a founda­
+tion for utilizing these rationales in the evaluation process",2,Retrieval augmented scientific claim verification,,
+"We propose an automated PICO-based Claim VERifica­
+tion framework (CliVER) that employs retrieval-augmented 
+methodologies to verify claims and identify supporting and 
+refuting clinical evidence from the clinical trial literature",2,Retrieval augmented scientific claim verification,,
+"We 
+also introduce an ensemble of three state-of-the-art systems 
+for label prediction",2,Retrieval augmented scientific claim verification,,
+"The outputs of the three systems are 
+combined using majority voting",2,Retrieval augmented scientific claim verification,,
+"Evaluations of two testing 
+datasets showcase the generalizability of our framework",2,Retrieval augmented scientific claim verification,,
+"We 
+observed that the ensemble of two deep language models and 
+one prompt-based model improves the verification accuracy 
+of each model by an absolute increase in the F1 score from 
+3% to 11% on CoVERt",2,Retrieval augmented scientific claim verification,,
+"We compared CliVER’s output for 
+19 scientific claims from 6 disease categories to clinicians’ 
+manual review",2,Retrieval augmented scientific claim verification,,
+"Our experiment revealed that CliVER 
+achieved high accuracy in both the Oracle and Open settings",2,Retrieval augmented scientific claim verification,,
+"Methods
+Task formulation
+Given a scientific claim c, we retrieved all clinical trial litera­
+ture A in PubMed relevant to c",2,Retrieval augmented scientific claim verification,,
+"Following previous stud­
+ies,11–13,15 for any given publication, its agreement with the 
+claim was represented by one of three labels: Support, Refute, 
+and Neutral (neither support nor refute)",2,Retrieval augmented scientific claim verification,,
+"For this study, we 
+evaluated the PubMed title and abstract for publications 
+either with “randomized controlled trial” labeled as publica­
+tion type or as Medical Subject Headings (MeSH) term",2,Retrieval augmented scientific claim verification,,
+"In 
+addition, for each abstract a 2 A, we retrieved rationale sen­
+tences S 2 a that justify each relationship",2,Retrieval augmented scientific claim verification,,
+"It is worth noting 
+that, to simplify the rational annotation and extraction, our 
+gold standard annotations contained a single-sentence ration­
+ale",2,Retrieval augmented scientific claim verification,,
+"Therefore, we only required the model to predict one 
+rationale sentence",2,Retrieval augmented scientific claim verification,,
+"CliVER: Baseline model
+We developed CliVER with four modules (Figure 1)",2,Retrieval augmented scientific claim verification,,
+"Using the PMIDs, we downloaded a total of 189 648 
+clinical trial publications",2,Retrieval augmented scientific claim verification,,
+"For each publication, the title, 
+abstract, and metadata (eg, authors, journal title, and publi­
+cation date) were parsed and stored in JSON files",2,Retrieval augmented scientific claim verification,,
+"We created 
+both lexical and dense indexes to enable efficient retrieval",2,Retrieval augmented scientific claim verification,,
+"Lexical indexes were built with Lucene to store term-to- 
+document mappings for fast response to “bag of words” 
+querying",2,Retrieval augmented scientific claim verification,,
+"Dense indexes were FAISS indexes built upon 
+document-level vectors encoded with the pre-trained Col­
+BERT model",2,Retrieval augmented scientific claim verification,,
+"21 Faiss supports efficient similarity search in 
+sets of dense vectors",2,Retrieval augmented scientific claim verification,,
+"Document retrieval
+Given a scientific claim, this module retrieved the top-k clini­
+cal trial publications using a hybrid approach",2,Retrieval augmented scientific claim verification,,
+"A claim is 
+2                                                                                                                                                                                               
+JAMIA Open, 2024, Vol",2,Retrieval augmented scientific claim verification,,
+com/jamiaopen/article/7/1/ooae021/7612234 by guest on 14 July 2025,2,Retrieval augmented scientific claim verification,,
+"encoded using the same ColBERT encoder for creating docu­
+ment embeddings",3,Retrieval augmented scientific claim verification,,
+"Then, we employed two similarity search­
+ers, LuceneSearcher and FaissSearcher, to retrieve the n most 
+relevant candidate articles to the claim",3,Retrieval augmented scientific claim verification,,
+"LuceneSearcher eval­
+uates claim-article similarity using bag-of-words representa­
+tions, while FaissSearcher uses dense transformer-derived 
+representations",3,Retrieval augmented scientific claim verification,,
+"The articles identified by two searchers are 
+ranked by the relevance score of a candidate article to the 
+claim, with a pre-trained document rank model (T5 
+ranker33)",3,Retrieval augmented scientific claim verification,,
+"The top-k articles were returned with respect to 
+the estimated scores",3,Retrieval augmented scientific claim verification,,
+"Sentence selection
+Given the claim and each of the top-k articles, this module 
+selects a top-t rationale sentence(s) from the abstract",3,Retrieval augmented scientific claim verification,,
+"For 
+simplicity, we set t ¼1 to select one sentence with the highest 
+similarity score as the primary rationale",3,Retrieval augmented scientific claim verification,,
+"To achieve this, we 
+used the same document ranking model (T5 ranker) to rank 
+similarities between the claim’s and each sentence’s 
+embeddings",3,Retrieval augmented scientific claim verification,,
+"Label prediction
+Given the claim, the abstract, and their candidate rationale 
+sentences, this module predicts the label of the abstract",3,Retrieval augmented scientific claim verification,,
+"We 
+treated it as a multiclass classification problem, where the 
+output indicates whether a given rationale sentence Supports, 
+(is) Neutral, or Refutes a claim",3,Retrieval augmented scientific claim verification,,
+"We hypothesized that an ensemble system combining the 
+results of different methods could yield better predictive per­
+formance than a single method",3,Retrieval augmented scientific claim verification,,
+"34,35 Hence, we addressed the 
+label prediction task using an ensemble system that combined 
+the results from three individual models (Figure 1, module 4)",3,Retrieval augmented scientific claim verification,,
+"Each individual system included two BERT-based models 
+and one prompt-based model",3,Retrieval augmented scientific claim verification,,
+"For the BERT-based approach, we concatenated a claim c 
+and its corresponding sentence s with the special token [SEP] 
+and added a prefix token [CLS] to form an input sequence 
+[CLS, c, SEP, s], and fed this input to BERT",3,Retrieval augmented scientific claim verification,,
+"The model takes 
+a sequence of tokens with a maximum length of 128 and pro­
+duces a 768-dimensional sequence representation vector",3,Retrieval augmented scientific claim verification,,
+"For 
+text shorter than 128 tokens, we added paddings (empty 
+tokens) to the end of the text to make up the length",3,Retrieval augmented scientific claim verification,,
+"For text 
+that is longer than 128 tokens, we used the first 128 tokens 
+as the input",3,Retrieval augmented scientific claim verification,,
+"Then, a fully connected layer is appended on top 
+of the [CLS] representation",3,Retrieval augmented scientific claim verification,,
+"Finally, a softmax layer maps the 
+representation vector to the target label space",3,Retrieval augmented scientific claim verification,,
+"We trained the 
+model with the objective function set to minimize cross- 
+entropy loss between the predicted and manually annotated 
+labels",3,Retrieval augmented scientific claim verification,,
+"We selected RoBERTa36 and PubMedBERT37 as our 
+backbone models",3,Retrieval augmented scientific claim verification,,
+"RoBERTa was chosen because it demon­
+strated strong performance in previous work VERISCI",3,Retrieval augmented scientific claim verification,,
+"Introduction: Previous work has shown that keyword-based methods achieve 65% 
+accuracy",1,testTesisCLaimsDetection,,
+"Methodology: We propose a BERT-based model that outperforms existing approaches by 
+15%",1,testTesisCLaimsDetection,,
+Results: Our experiments demonstrate that the proposed method achieves 89,1,testTesisCLaimsDetection,,
+"5% 
+accuracy, which is significantly better than baseline (p < 0",1,testTesisCLaimsDetection,,
+Conclusion: This work introduces a new state-of-the-art for claim detection,1,testTesisCLaimsDetection,,
+"A Study on Artificial Intelligence in Healthcare 
+John Smith, Maria Garcia, Ahmed Hassan 
+Department of Computer Science, University of Research 
+Abstract 
+This paper presents a comprehensive study of AI applications in healthcare",1,testThesis,,
+"We found 
+that machine learning models can significantly improve diagnostic accuracy",1,testThesis,,
+"Our 
+proposed system achieved 95% accuracy in detecting early-stage tumors",1,testThesis,,
+"However, there 
+are limitations in current approaches that need to be addressed",1,testThesis,,
+"Introduction 
+Deep learning models have shown superior performance in medical image analysis, 
+achieving 94",1,testThesis,,
+7% accuracy in detecting pneumonia from chest X-rays (Wang et al,1,testThesis,,
+"Our experimental results demonstrate that the proposed CNN architecture reduces false 
+positives by 23",1,testThesis,,
+"3% of 
+malignant tumors in the validation set, significantly outperforming radiologists who 
+achieved 78",1,testThesis,,
+"We observed a 34% reduction in diagnosis time when using 
+our AI-assisted tool in clinical settings",1,testThesis,,
+"The correlation between our model's predictions 
+and biopsy results was 0",1,testThesis,,
+"92 (Pearson's r), indicating strong predictive power",1,testThesis,,
+"Recent advances in natural language processing have enabled better extraction of 
+clinical information from electronic health records",1,testThesis,,
+"Our team developed a novel 
+transformer-based architecture that processes medical texts with 91% accuracy",1,testThesis,,
+"The 
+model was trained on 2 million clinical notes from multiple hospitals",1,testThesis,,
+"We observed that 
+the attention mechanism particularly focused on symptoms and medication patterns",1,testThesis,,
+This approach reduced manual data entry time by 45% in preliminary tests,1,testThesis,,
+"Related Work 
+Previous studies have explored various machine learning approaches in healthcare",1,testThesis,,
+"(2022) demonstrated that ensemble methods can improve diagnostic 
+accuracy by 12-15% across multiple conditions",1,testThesis,,
+"Their study included 15,000 patients 
+across 5 different hospitals",1,testThesis,,
+"Similarly, Chen and colleagues (2023) showed that deep 
+learning models achieve comparable performance to specialist physicians in 
+dermatological diagnosis, with an AUC of 0",1,testThesis,,
+"However, many existing approaches suffer from limitations in generalizability",1,testThesis,,
+"The 
+models often perform well only on specific populations or healthcare settings",1,testThesis,,
+"This is a 
+significant challenge that our research aims to address",1,testThesis,,
+"Methodology 
+Our dataset consisted of 15,000 annotated medical images from 5 different sources, 
+with 3-fold cross-validation ensuring robustness",2,testThesis,,
+"The proposed attention mechanism 
+improved model performance by 15",2,testThesis,,
+"05) confirmed our sample size was adequate for detecting 
+medium effect sizes",2,testThesis,,
+"Inter-rater reliability between our model and three expert 
+annotators achieved Cohen's κ = 0",2,testThesis,,
+"3 seconds 
+on average, meeting real-time clinical requirements",2,testThesis,,
+"We implemented our model using PyTorch and trained it on NVIDIA A100 GPUs for 72 
+hours",2,testThesis,,
+"The training process involved 200 epochs with early stopping based on validation 
+loss",2,testThesis,,
+We used Adam optimizer with a learning rate of 0,2,testThesis,,
+"Results 
+Our method achieved state-of-the-art performance with 96",2,testThesis,,
+"2% accuracy on the public 
+benchmark dataset",2,testThesis,,
+"The sensitivity analysis revealed that our model maintained 
+consistent performance across different patient demographics",2,testThesis,,
+"We observed no 
+significant bias across age groups or ethnicities",2,testThesis,,
+"The false positive rate was consistently 
+below 3% across all test categories",2,testThesis,,
+"These results demonstrate the robustness of our 
+approach",2,testThesis,,
+"The system performed exceptionally well on early-stage detection tasks, catching 92% of 
+stage 1 tumors",2,testThesis,,
+This represents a 15% improvement over current clinical practices,2,testThesis,,
+"The 
+model also showed strong performance on rare conditions, which are often challenging 
+for traditional diagnostic methods",2,testThesis,,
+"Discussion 
+Our findings suggest that AI systems could potentially reduce healthcare costs by up to 
+30% through early detection and prevention",2,testThesis,,
+"This would transform healthcare delivery 
+worldwide",2,testThesis,,
+"The integration of our system into clinical workflow would require minimal 
+training for healthcare providers",2,testThesis,,
+We believe this technology will revolutionize medical diagnosis in the next decade,2,testThesis,,
+"The 
+potential applications extend beyond imaging to include genomic analysis and drug 
+discovery",2,testThesis,,
+Our preliminary work in these areas shows promising results,2,testThesis,,
+"Conclusion 
+In conclusion, our research demonstrates the significant potential of AI in healthcare",2,testThesis,,
+The proposed system achieves superior performance in medical image analysis,2,testThesis,,
+work will focus on prospective clinical trials,3,testThesis,,
+"We will also explore integration with 
+electronic health records",3,testThesis,,
+The code and models are available on GitHub,3,testThesis,,
+"Limitations and Future Work 
+While our results are promising, several challenges remain",3,testThesis,,
+"The model requires further 
+validation on diverse populations",3,testThesis,,
+"Real-world clinical validation is needed before 
+deployment",3,testThesis,,
+Integration with existing hospital systems may present technical challenges,3,testThesis,,
+Regulatory approval processes will require extensive testing,3,testThesis,,
+Open Access  This article is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4,1,"Valsci an open‑source, self‑hostable",,
+"You do not have permission under this licence to share adapted material derived from this article or parts of 
+it",1,"Valsci an open‑source, self‑hostable",,
+"The images or other third party material in this article are included in the article’s Creative Commons licence, unless indicated otherwise 
+in a credit line to the material",1,"Valsci an open‑source, self‑hostable",,
+"If material is not included in the article’s Creative Commons licence and your intended use is not permitted 
+by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder",1,"Valsci an open‑source, self‑hostable",,
+"To view a copy 
+of this licence, visit http://​creat​iveco​mmons",1,"Valsci an open‑source, self‑hostable",,
+"SOFTWARE
+Edelman and Skolnick ﻿BMC Bioinformatics          (2025) 26:140  
+https://doi",1,"Valsci an open‑source, self‑hostable",,
+"In this paper, we introduce Valsci, an open-source, self-hostable utility 
+that automates large-batch scientific claim verification using any OpenAI-compatible 
+large language model",1,"Valsci an open‑source, self‑hostable",,
+"Valsci unites retrieval-augmented generation with structured 
+bibliometric scoring and chain-of-thought prompting, enabling users to efficiently 
+search, evaluate, and summarize evidence from the Semantic Scholar database 
+and other academic sources",1,"Valsci an open‑source, self‑hostable",,
+"Unlike conventional standalone LLMs, which often suffer 
+from hallucinations and unreliable citations, Valsci grounds its analyses in verifiable 
+published findings",1,"Valsci an open‑source, self‑hostable",,
+"A guided prompt-flow approach is employed to generate query 
+expansions, retrieve relevant excerpts, and synthesize coherent, evidence-based 
+reports",1,"Valsci an open‑source, self‑hostable",,
+"Results:  Preliminary evaluations across claims from the SciFact benchmark dataset 
+reveal that Valsci significantly outperforms base GPT-4o outputs in citation hallucina-
+tion rate while maintaining a low misclassification rate",1,"Valsci an open‑source, self‑hostable",,
+"The system is highly scalable, 
+processing hundreds of claims per hour through asynchronous parallelization",1,"Valsci an open‑source, self‑hostable",,
+"Conclusions:  By providing an open and transparent platform for large-batch literature 
+verification, Valsci substantially lowers the barrier to comprehensive evidence-based 
+reviews and fosters a more reproducible research ecosystem",1,"Valsci an open‑source, self‑hostable",,
+"Researchers, particularly in fields such as bioinformatics and biomedical sciences, 
+routinely confront the challenge of rapidly verifying new hypotheses or large sets of 
+*Correspondence:   
+skolnick@gatech",1,"Valsci an open‑source, self‑hostable",,
+"edu
+1 Georgia Tech Center 
+for the Study of Systems Biology, 
+Atlanta, GA, USA",1,"Valsci an open‑source, self‑hostable",,
+"Page 2 of 25
+Edelman and Skolnick ﻿BMC Bioinformatics          (2025) 26:140 
+model-generated predictions",2,"Valsci an open‑source, self‑hostable",,
+"Classical approaches to literature review require manu-
+ally searching, extracting, and synthesizing evidence, and can be slow, labor-intensive, 
+and prone to human error [2]",2,"Valsci an open‑source, self‑hostable",,
+"The urgency of generating accurate, real-time insights has 
+thus sparked intense interest in automating, scaling, and streamlining the claim verifica-
+tion process",2,"Valsci an open‑source, self‑hostable",,
+"Scientific claim verification—the specific task of assessing the accuracy and validity 
+of statements based on evidence extracted from existing literature—is central to this 
+process of literature review, and therefore to advancing knowledge while safeguard-
+ing research quality and reproducibility",2,"Valsci an open‑source, self‑hostable",,
+"Its importance lies in preventing the spread of 
+misinformation, enhancing trust in published findings, and enabling rapid, evidence-
+informed decision-making in research and clinical settings",2,"Valsci an open‑source, self‑hostable",,
+"The rise of AI‑assisted literature analysis & current gaps
+Recent advancements in large language models (LLMs) have transformed various 
+domains of natural language processing (NLP), from machine translation to summari-
+zation",2,"Valsci an open‑source, self‑hostable",,
+"Yet, when deployed as stand-alone tools for scientific claim verification, LLMs 
+often struggle with hallucinations—fabricating data or citing non-existent sources—
+thereby undermining their utility as reliable evidence synthesizers [6]",2,"Valsci an open‑source, self‑hostable",,
+"Many commercial 
+platforms, such as Scite [10], Elicit, and Consensus, have integrated NLP-based capa-
+bilities to expedite literature retrieval and summarization",2,"Valsci an open‑source, self‑hostable",,
+"However, these proprietary 
+solutions typically operate as “black boxes” and impose financial or usage constraints, 
+making them suboptimal for large-scale or highly specialized academic applications",2,"Valsci an open‑source, self‑hostable",,
+"Existing open-source tools have made important strides toward transparent, repro-
+ducible literature analysis",2,"Valsci an open‑source, self‑hostable",,
+"For instance, some employ retrieval-augmented generation 
+(RAG) to ensure that LLM outputs are grounded in texts scraped from academic reposi-
+tories [8]",2,"Valsci an open‑source, self‑hostable",,
+"Others provide user-friendly environments to rank or cluster abstracts based 
+on relevance to predefined queries",2,"Valsci an open‑source, self‑hostable",,
+"Yet, most of these frameworks either lack end-to-
+end pipelines—requiring users to manually feed abstracts—or cannot efficiently handle 
+large numbers of claims concurrently",2,"Valsci an open‑source, self‑hostable",,
+"As a result, researchers aiming for high-through-
+put verification continue to face a patchwork of partial solutions",2,"Valsci an open‑source, self‑hostable",,
+"Valsci: an end‑to‑end solution
+In response to these limitations, we present Valsci, an open-source and fully self-hosta-
+ble utility for automated scientific claim verification at scale",2,"Valsci an open‑source, self‑hostable",,
+"The source code for Valsci 
+is distributed under the June 29, 2007 Version 3 GNU General Public License",2,"Valsci an open‑source, self‑hostable",,
+"•	 Structured Bibliometric Scoring: In addition to relevance, Valsci incorporates an 
+author’s H-index [5], citation counts, and estimated journal impact into an overall 
+evidence score, providing a more nuanced view of source credibility",2,"Valsci an open‑source, self‑hostable",,
+"This approach mitigates the 
+risk of hallucinations by requiring the LLM to cite and assess real, validated excerpts",3,"Valsci an open‑source, self‑hostable",,
+"•	 High-Throughput, Asynchronous Execution: Designed for large-batch tasks, Valsci 
+employs asynchronous parallelization in Python to manage network requests, token 
+usage, and inference calls concurrently",3,"Valsci an open‑source, self‑hostable",,
+"With typical resource settings, the system 
+can process hundreds of claims per hour—far outpacing both manual human review-
+ers and single-threaded open-source tools",3,"Valsci an open‑source, self‑hostable",,
+"Contributions and significance
+This work aims to advance automated literature verification by offering a robust, trans-
+parent, and scalable alternative to proprietary solutions",3,"Valsci an open‑source, self‑hostable",,
+"We show that Valsci not only 
+lowers the misclassification rate for scientific claims compared to direct outputs from 
+base language models, but also successfully eliminates citation hallucinations",3,"Valsci an open‑source, self‑hostable",,
+"Addi-
+tionally, it offers a speed increase of over thirty times under reasonable API rate limits 
+compared to manual review by undergraduate researchers",3,"Valsci an open‑source, self‑hostable",,
+"By coupling an open-source, 
+modular design with flexible integration options for LLM backends, Valsci empow-
+ers researchers to streamline large-scale systematic reviews, meta-analyses, and high-
+throughput validation of computational predictions",3,"Valsci an open‑source, self‑hostable",,
+"Related work
+The growing complexity and volume of scientific literature have driven the develop-
+ment of AI-assisted tools for claim verification, literature review, and citation analysis",3,"Valsci an open‑source, self‑hostable",,
+"While many systems now integrate large language models (LLMs) with bibliographic 
+databases, existing approaches remain constrained in scalability, cost, transparency, and 
+automation",3,"Valsci an open‑source, self‑hostable",,
+"Valsci differs by being fully open-source, self-hostable, and designed for 
+high-throughput, large-batch claim verification",3,"Valsci an open‑source, self‑hostable",,
+"It combines retrieval-augmented gen-
+eration (RAG) with structured bibliometric scoring and guided chain-of-thought (CoT) 
+reasoning [15], offering an end-to-end, adaptable alternative to proprietary and aca-
+demic solutions",3,"Valsci an open‑source, self‑hostable",,
+"In the NLP community, claim verification is often formalized as a classification or 
+natural language inference (NLI) task, in which claims are evaluated against retrieved 
+evidence, producing judgments such as supported, refuted, or inconclusive [3, 11]",3,"Valsci an open‑source, self‑hostable",,
+"State-
+of-the-art solutions typically integrate retrieval systems with neural inference models; 
+however, comprehensive and scalable end-to-end open-source implementations remain 
+limited",3,"Valsci an open‑source, self‑hostable",,
+"Closed-Source Tools One of the earliest AI-driven citation analysis tools, Scite, clas-
+sifies citations as supporting, contradicting, or mentioning a referenced claim from a 
+particular academic work",3,"Valsci an open‑source, self‑hostable",,
+"By extracting citation context, it provides a useful measure 
+of how a study is discussed in the literature",3,"Valsci an open‑source, self‑hostable",,
+"However, Scite does not actively retrieve or 
+analyze new sources; rather, it depends on existing citation networks",3,"Valsci an open‑source, self‑hostable",,
+"This approach lim-
+its its utility for claims that require comprehensive evidence synthesis from the broader 
+scientific corpus",3,"Valsci an open‑source, self‑hostable",,
+"Unlike Scite, Valsci dynamically searches for relevant literature,",3,"Valsci an open‑source, self‑hostable",,
+"Page 4 of 25
+Edelman and Skolnick ﻿BMC Bioinformatics          (2025) 26:140 
+extracts supporting text, and evaluates the claim through structured analysis, ensuring 
+that verification is based on the strongest available evidence rather than pre-existing 
+citation relationships",4,"Valsci an open‑source, self‑hostable",,
+"Closed-source LLM-assisted literature review tools such as Elicit and Consensus aim 
+to automate evidence retrieval and synthesis but remain black-box systems with unclear 
+weighting of retrieved sources",4,"Valsci an open‑source, self‑hostable",,
+"Elicit allows users to search for relevant literature and 
+extract key findings but imposes constraints on how many papers can be processed, with 
+a “Pro” plan allowing only 1,200 papers per year",4,"Valsci an open‑source, self‑hostable",,
+"Consensus, built on the same Semantic 
+Scholar database as Valsci, offers a “Pro Analysis” feature that provides structured evi-
+dence summaries, though the exact methodology behind its synthesis remains opaque",4,"Valsci an open‑source, self‑hostable",,
+"Both tools are subscription-based, limiting accessibility and transparency",4,"Valsci an open‑source, self‑hostable",,
+"Valsci, by con-
+trast, is both open-source and allows unrestricted batch processing at no cost, making it 
+more suitable for large-scale systematic reviews and high-volume research workflows",4,"Valsci an open‑source, self‑hostable",,
+"Open-Source Tools Unlike these proprietary systems, open-source solutions such as 
+LitLLM and LLAssist provide more transparent AI-assisted literature analysis",4,"Valsci an open‑source, self‑hostable",,
+"LitLLM 
+applies retrieval-augmented generation (RAG) to ensure that LLM-generated summa-
+ries are grounded in retrieved texts, reducing the risk of hallucination [1]",4,"Valsci an open‑source, self‑hostable",,
+"However, it 
+requires users to manually provide abstracts for input, rather than performing active lit-
+erature searches",4,"Valsci an open‑source, self‑hostable",,
+"LLAssist takes a batch of abstracts and ranks them by relevance to a 
+predefined research question but does not automatically search for or retrieve relevant 
+papers [4]",4,"Valsci an open‑source, self‑hostable",,
+"Other open-source solutions include systems such as MultiVerS [14], which focus on 
+document-level fact-checking in controlled scientific contexts and rely on specialized 
+model training (i",4,"Valsci an open‑source, self‑hostable",,
+"resource-intensive, domain-specific fine-tuning) for tasks like anno-
+tating SciFact claims",4,"Valsci an open‑source, self‑hostable",,
+"Consequently, these systems are less generalizable to arbitrary 
+domains and lack the end-to-end automation needed for large-scale claim verification 
+across diverse scientific fields",4,"Valsci an open‑source, self‑hostable",,
+"These tools serve as useful components for systematic review workflows but do not 
+provide a fully automated end-to-end pipeline",4,"Valsci an open‑source, self‑hostable",,
+"Valsci extends beyond retrieval and rank-
+ing by autonomously handling search, evaluation, bibliometric scoring, and final synthe-
+sis into structured claim verification reports",4,"Valsci an open‑source, self‑hostable",,
+"Focus on Scalability A critical distinction between Valsci and these alternatives is 
+its ability to process large batches of claims efficiently",4,"Valsci an open‑source, self‑hostable",,
+"Existing retrieval-based systems, 
+whether open-source or commercial, generally handle claims sequentially or within 
+limited pre-configured batch sizes",4,"Valsci an open‑source, self‑hostable",,
+"Valsci, leveraging asynchronous parallelization of 
+network requests, can simultaneously process as many claims as the throughput of the 
+configured LLM providing endpoint supports",4,"Valsci an open‑source, self‑hostable",,
+"This scalability is particularly valuable for 
+research fields requiring high-throughput verification, such as bioinformatics and clini-
+cal guideline assessments, where researchers often need to verify thousands of claims 
+derived from computational models",4,"Valsci an open‑source, self‑hostable",,
+"While existing AI-driven literature tools have made notable strides, none provide an 
+open, self-hostable, end-to-end claim verification system that integrates retrieval, evalu-
+ation, bibliometric scoring, and structured synthesis into a single pipeline",4,"Valsci an open‑source, self‑hostable",,
+"Valsci fills this 
+gap by offering an adaptable and scalable solution that is not only more cost-effective but 
+also ensures transparency and reproducibility in AI-assisted scientific verification",4,"Valsci an open‑source, self‑hostable",,
+"Page 5 of 25
+Edelman and Skolnick ﻿BMC Bioinformatics          (2025) 26:140 
+	
+Implementation
+The claim verification process begins with query generation, where an LLM is 
+employed to transform a claim into multiple well-structured search queries opti-
+mized for literature retrieval",5,"Valsci an open‑source, self‑hostable",,
+"Instead of relying on simple keyword extraction, Valsci 
+employs a strategic query expansion prompt designed to maximize the likelihood that 
+relevant literature entries are captured by the search",5,"Valsci an open‑source, self‑hostable",,
+"This involves incorporating syn-
+onyms, alternative phrasing, and mechanistic decompositions to ensure a diverse set 
+of relevant papers is retrieved",5,"Valsci an open‑source, self‑hostable",,
+"Additionally, the system deliberately constructs que-
+ries that target both supporting and refuting evidence, ensuring that the retrieved lit-
+erature provides a balanced assessment of the claim",5,"Valsci an open‑source, self‑hostable",,
+"Queries are tailored to match the 
+search conventions of Semantic Scholar and other academic search engines, improv-
+ing retrieval efficiency across multiple disciplines",5,"Valsci an open‑source, self‑hostable",,
+"The prompt used to perform this 
+expansion is available in Appendix A",5,"Valsci an open‑source, self‑hostable",,
+"The information flow through Valsci’s modular 
+data processing structure is depicted in Fig",5,"Valsci an open‑source, self‑hostable",,
+"Once queries are generated, Valsci executes them against the free Semantic Scholar 
+Search API to obtain a corpus of potentially relevant papers",5,"Valsci an open‑source, self‑hostable",,
+"The response from the 
+API includes the unique identifier of academic works in the Semantic Scholar Data-
+base, which is locally hosted within Valsci for fast retrieval without additional API 
+calls",5,"Valsci an open‑source, self‑hostable",,
+"Valsci includes a utility allowing the user to download the full Semantic Scholar 
+database as part of the system setup",5,"Valsci an open‑source, self‑hostable",,
+"The pattern of leveraging the Semantic Scholar 
+API for relevance search in combination with Valsci’s indexing utility for fast retrieval 
+of texts from the local database is what makes effective retrieval augmented genera-
+tion (RAG) against such a large corpus of data possible",5,"Valsci an open‑source, self‑hostable",,
+1  How information flows through Valsci’s modular data processing structure,5,"Valsci an open‑source, self‑hostable",,
+"Information goes through 
+the stages of retrieval (blue), analysis (orange), and synthesis (green)",5,"Valsci an open‑source, self‑hostable",,
+"For each claim, up to N-times-M papers 
+may be evaluated",5,"Valsci an open‑source, self‑hostable",,
+"Page 6 of 25
+Edelman and Skolnick ﻿BMC Bioinformatics          (2025) 26:140 
+To maximize access to full-text sources, the system first attempts to retrieve the work 
+from the local Semantic Scholar Open Research Corpus (S2ORC), which contains full-
+text versions of millions of academic papers",6,"Valsci an open‑source, self‑hostable",,
+"By prioritizing full-text retrieval, Valsci 
+increases the likelihood of retrieving detailed excerpts rather than relying solely on 
+abstracts",6,"Valsci an open‑source, self‑hostable",,
+"However, to simultaneously ensure that the breadth of literature coverage is 
+not unnecessarily limited, abstracts are still used as a fallback if the full text is not avail-
+able",6,"Valsci an open‑source, self‑hostable",,
+"The retrieval engine employs deduplication techniques through an LLM call to 
+prevent redundant papers from being analyzed multiple times",6,"Valsci an open‑source, self‑hostable",,
+"With default settings of 
+five generated queries and a cap of up to five papers retrieved per query, the standard 
+retrieval process typically yields between 10 and 20 papers per claim, although this con-
+figuration is adjustable based on computational resources and research requirements",6,"Valsci an open‑source, self‑hostable",,
+"Following retrieval, each paper undergoes content extraction and relevance analysis 
+to identify key excerpts that pertain to the claim under investigation",6,"Valsci an open‑source, self‑hostable",,
+"Using a structured 
+LLM prompt, Valsci isolates directly relevant statements, mechanistic explanations, 
+and empirical findings that either support or contradict the claim",6,"Valsci an open‑source, self‑hostable",,
+"These excerpts are 
+extracted verbatim, preserving critical context, including statistical findings and meth-
+odological details",6,"Valsci an open‑source, self‑hostable",,
+"The verbatim excerpts are also paired with an explanation to provide 
+relevant context or rationale for the excerpt’s inclusion in the final analysis",6,"Valsci an open‑source, self‑hostable",,
+"The rel-
+evance of each excerpt is then assessed using a confidence score ranging from 0 to 1, 
+ensuring that only evidence that could reasonably be considered potentially relevant is 
+considered in later synthesis stages",6,"Valsci an open‑source, self‑hostable",,
+"If a paper is determined to have no relevance, it is 
+classified separately and excluded from final synthesis",6,"Valsci an open‑source, self‑hostable",,
+"To further refine the claim verification process, Valsci implements an optional evi-
+dence-scoring mechanism that ranks papers based on their scientific credibility and 
+impact",6,"Valsci an open‑source, self‑hostable",,
+"Unlike simple relevance-based ranking, this scoring process incorporates bib-
+liometric indicators such as the H-index of the first and last authors, the citation count 
+of the paper, and an LLM-derived estimate of the journal’s impact",6,"Valsci an open‑source, self‑hostable",,
+"The author impact 
+metric considers the expertise of the researchers involved, while citation count provides 
+a measure of how influential the study has been in the field",6,"Valsci an open‑source, self‑hostable",,
+"The journal impact metric 
+is assessed using an LLM prompt aiming to recognize venue prestige based on historical 
+publication standards and citation patterns in the model’s parametric knowledge, which 
+simplifies implementation by removing the need for integration with an external data-
+base",6,"Valsci an open‑source, self‑hostable",,
